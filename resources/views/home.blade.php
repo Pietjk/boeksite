@@ -2,7 +2,9 @@
 @section('content')
 {{-- Primary book --}}
 <div class="even">
+    
     <div class="container" id="section1">
+        <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="columns">
