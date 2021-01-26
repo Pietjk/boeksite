@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [App\Http\Controllers\ContentController::class, 'index'])->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::resource('post', App\Http\Controllers\PostsController::class);
 });
 
 Auth::routes(['register' => false]);

@@ -27,7 +27,6 @@
 
 </head>
 <body>
-    @include('components._nav')
         @yield('content')
         
 

@@ -12795,6 +12795,7 @@ a.has-text-danger-dark:focus {
 
 html {
   scroll-behavior: smooth;
+  background-color: #121212;
 }
 
 html a {
@@ -12802,35 +12803,50 @@ html a {
   text-decoration: none;
 }
 
-.even {
+body > div:nth-child(even) {
   background-color: #585858;
   color: #F9F9F9;
 }
 
-.even .title {
+body > div:nth-child(even) .edit {
+  background-color: #FDAD00;
+}
+
+body > div:nth-child(even) .edit .edit-icon {
+  color: #585858;
+}
+
+body > div:nth-child(even) .title {
   color: #FDAD00;
 }
 
-.even .label {
+body > div:nth-child(even) .label {
   color: #FDAD00;
 }
 
-.uneven {
+body > div:nth-child(odd) {
   background-color: #121212;
   color: #F9F9F9;
 }
 
-.uneven .title {
+body > div:nth-child(odd) .title {
   color: #FDAD00;
 }
 
-.uneven .label {
+body > div:nth-child(odd) .label {
   color: #FDAD00;
 }
 
 .has-bg-img {
   background: url("https://www.stylist.co.uk/images/app/uploads/2019/12/17162852/the-end-of-a-book-1268x845.jpeg?w=1640&amp;h=1&amp;fit=max&amp;auto=format%2Ccompress") center center;
   background-size: cover;
+}
+
+.has-bg-img .notification {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .has-bg-img .body {
@@ -12887,7 +12903,9 @@ html a {
 }
 
 .edit .edit-text {
-  visibility: hidden;
+  display: none;
+  overflow: hidden;
+  white-space: nowrap;
   font-size: 20px;
 }
 
@@ -12902,12 +12920,55 @@ html a {
 }
 
 .edit:hover .edit-text {
-  visibility: visible;
+  display: inline;
 }
 
 .edit:hover .edit-icon {
   color: #585858;
   cursor: pointer;
+}
+
+.login-container {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.login-container .columns {
+  width: 100%;
+}
+
+.login-container .panel {
+  max-width: 520px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.login-container .panel .panel-block {
+  background-color: #585858;
+}
+
+.login-container .panel .panel-block .label {
+  color: #121212;
+}
+
+.form-container {
+  margin-top: 3em;
+}
+
+.form-container .panel-block {
+  background-color: #585858;
+}
+
+.form-container .panel-block .label {
+  color: #121212;
+}
+
+.form-container .panel-block .columns {
+  width: 100%;
 }
 
 @media (max-width: 768px) {

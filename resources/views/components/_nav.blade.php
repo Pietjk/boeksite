@@ -1,7 +1,7 @@
 <section class="hero is-fullheight has-bg-img">
     @auth
     <div class="hero-head has-text-centered mb-5">
-        <div class="notification is-success" id="notification">
+        <div class="notification is-primary">
             <h1 class="is-3">Je bent ingelogd!</h1>
 
             <h1 class="is-3">

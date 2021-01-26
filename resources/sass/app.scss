@@ -9,6 +9,7 @@
 
 html {
     scroll-behavior: smooth;
+    background-color: $black;
 
     a {
         color: inherit;
@@ -16,9 +17,18 @@ html {
     }
 }
 
-.even {
+body > div:nth-child(even) {
     background-color: $grey;
     color: $white;
+
+    .edit {
+        background-color: $primary;
+        
+        .edit-icon{
+
+            color: $grey;
+        }
+    }
 
     .title {
         color: $primary;
@@ -29,7 +39,7 @@ html {
     }
 }
 
-.uneven {
+body > div:nth-child(odd) {
     background-color: $black;
     color: $white;
 
@@ -42,9 +52,26 @@ html {
     }
 }
 
+
+
+.even {
+    
+}
+
+.uneven {
+    
+}
+
 .has-bg-img { 
     background: url('https://www.stylist.co.uk/images/app/uploads/2019/12/17162852/the-end-of-a-book-1268x845.jpeg?w=1640&amp;h=1&amp;fit=max&amp;auto=format%2Ccompress')center center; 
     background-size:cover;
+
+    .notification {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 
     .body {
         margin-top: 15%;
@@ -98,9 +125,11 @@ html {
     z-index: 1;
 
     .edit-text {
-        visibility: hidden;
+        // visibility: hidden;
+        display: none;
+        overflow: hidden;
+        white-space: nowrap;
         font-size: 20px;
-        // vertical-align: middle;
     }
 
     .edit-icon {
@@ -113,7 +142,7 @@ html {
     width: 120px;
 
     .edit-text {
-        visibility: visible;
+        display: inline;
     }
 
     .edit-icon {
@@ -121,6 +150,50 @@ html {
         cursor: pointer;
     } 
 }
+
+.login-container {
+    margin: 0; 
+    position: absolute; 
+    top: 50%; left: 50%; 
+    -ms-transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+
+    .columns {
+        width: 100%;
+    }
+
+    .panel {
+        max-width: 520px;
+        width: 90%;
+        margin: 0 auto;
+
+        .panel-block {
+            background-color: $grey;
+            
+            .label {
+                color: $black;
+            }
+        }
+    }
+}
+
+.form-container {
+    margin-top: 3em;
+
+    .panel-block {
+        background-color: $grey;
+
+        .label {
+            color: $black;
+        }
+
+        .columns {
+            width: 100%;
+        }
+    }
+}
+
 
 @media (max-width: 768px)
 {
@@ -162,22 +235,19 @@ html {
 }
 
 // Slick js carousel slider styling
-
-  .clip {
+.clip {
     height: 100px;
     overflow: hidden;
     bottom: 0;
-  }
-  .center .slick-slide {
+}
+.center .slick-slide {
     // background-color: rgba(red, 0.3);
     // height: 400px;
     margin: 0 auto;
-  }
-  .center .slick-center h3{
-    .top {
-    }
+}
+.center .slick-center h3{
     .bottom {
-      font-size: 90%;
-      width: 90%;
+        font-size: 90%;
+        width: 90%;
     }
-  }
+}
