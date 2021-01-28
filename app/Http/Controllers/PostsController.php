@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
             'description' => ['required', 'string', 'min:3'],
             'type' => ['required', 'string']
@@ -68,7 +68,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, post $post)
     {
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
             'description' => ['required', 'string', 'min:3']
         ]);

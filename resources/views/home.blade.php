@@ -4,7 +4,7 @@
 @include('components._nav')
 
 {{-- Primary book --}}
-<div class="even">
+<div>
     @auth
         <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>
     @endauth
@@ -42,7 +42,7 @@
     </div>
 </div>
 {{-- Book list --}}
-<div class="uneven">
+<div>
     @auth
         <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>
     @endauth
@@ -69,7 +69,7 @@
 </div>
 
 {{-- About me --}}
-<div class="even">
+<div>
     @auth
         
             <a href="
@@ -143,7 +143,7 @@
 </div>
 
 {{-- Contact --}}
-<div class="uneven">
+<div>
     @auth
     <a href="
         @if ($contactPost->isEmpty()) 
