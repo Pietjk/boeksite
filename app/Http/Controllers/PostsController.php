@@ -8,16 +8,6 @@ use Illuminate\Http\Request;
 class PostsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -59,17 +49,6 @@ class PostsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(post $post)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\post  $post
@@ -97,16 +76,5 @@ class PostsController extends Controller
         $post->update($validated);
 
         return redirect('/');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(post $post)
-    {
-        //
     }
 }
