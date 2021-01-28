@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -39,21 +39,21 @@ class PostsController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'min:3', 'string', 'max:255'],
             'description' => ['required', 'string', 'min:3'],
-            'order' => ['required', 'string']
+            'type' => ['required', 'string']
         ]);
 
-        unset($validated['order']);
+        unset($validated['type']);
 
-        if ($request->order === "over mij") 
+        if ($request->type === "over mij") 
         {
             $order = 1;
         } 
-        else
+        elseif ($request->type === "contact")
         {
             $order = 2;
         }
 
-        Posts::create($validated + ['order' => $order]);
+        Post::create($validated + ['order' => $order]);
 
         return redirect('/');
     }
@@ -61,10 +61,10 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Posts  $posts
+     * @param  \App\Models\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Posts $posts)
+    public function show(post $post)
     {
         //
     }
@@ -72,33 +72,40 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Posts  $posts
+     * @param  \App\Models\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Posts $posts)
+    public function edit(post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Posts  $posts
+     * @param  \App\Models\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Posts $posts)
+    public function update(Request $request, post $post)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'min:3', 'string', 'max:255'],
+            'description' => ['required', 'string', 'min:3']
+        ]);
+
+        $post->update($validated);
+
+        return redirect('/');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Posts  $posts
+     * @param  \App\Models\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Posts $posts)
+    public function destroy(post $post)
     {
         //
     }

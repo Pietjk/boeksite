@@ -8,7 +8,7 @@
             </div>
             <form action="{{ route('post.store') }}" method="post">
                 @csrf
-                <input type="hidden" name="order" value="{{ $currentPost }}">
+                <input type="hidden" name="type" value="{{ $currentPost }}">
                 
                 <div class="panel-block">
                     <div class="columns is-multiline">

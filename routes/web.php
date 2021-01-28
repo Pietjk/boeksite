@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\ContentController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('post', App\Http\Controllers\PostsController::class);
+    Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'destroy']);
 });
 
 Auth::routes(['register' => false]);
