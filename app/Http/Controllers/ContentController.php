@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Book;
 
 class ContentController extends Controller
 {
@@ -12,8 +13,10 @@ class ContentController extends Controller
 
         $aboutPost = $post->whereOrder(1)->get();
         $contactPost = $post->whereOrder(2)->get();
-
-        return view('home', compact('aboutPost', 'contactPost'));
+        $books = Book::all();
+        $featuredBook = Book::whereFeatured(true)->get();
+        
+        return view('home', compact('aboutPost', 'contactPost', 'books', 'featuredBook'));
     }
 }
 // 'firstPost', 'secondPost', 'thirdPost'

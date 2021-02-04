@@ -17,6 +17,7 @@ Route::get('/', [App\Http\Controllers\ContentController::class, 'index'])->name(
 
 Route::middleware('auth')->group(function () {
     Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'destroy', 'index']);
+    Route::resource('book', App\Http\Controllers\BooksController::class);
 });
 
 Auth::routes(['register' => false]);

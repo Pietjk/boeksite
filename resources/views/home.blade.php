@@ -6,7 +6,21 @@
 {{-- Primary book --}}
 <div>
     @auth
-        <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>
+        <a href="
+            @if ($books->isEmpty()) 
+                {{ route('book.create') }} 
+            @else 
+                {{ route('book.index') }} 
+            @endif
+        ">
+            <div class="edit">
+                <span class="edit-icon">
+                    <p>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost->isEmpty()) Creëer @else Pas aan @endif</span>
+                    </p>
+                </span>
+            </div>
+        </a>
     @endauth
 
     <div class="container" id="section1">
@@ -22,14 +36,32 @@
                         <div class="column is-1"></div>
 
                         <div class="column">
-                            <h1 class="title">hallo</h1>
+                            <h1 class="title">
+                                @if($books->isEmpty()) 
+                                    Oeps!
+                                @else
+                                    {{ $featuredBook[0]->name }}
+                                @endif
+                            </h1>
                             <div class="text">
-
-                               
+                                @php
+                                    if($aboutPost->isEmpty()) 
+                                    {
+                                        echo('Het lijkt erop dat er hier op dit moment nog geen content is');
+                                    } 
+                                    else 
+                                    {
+                                        echo(
+                                            nl2br(
+                                                $featuredBook[0]->description
+                                            )
+                                        );
+                                    }
+                                @endphp
                             </div>
                             <div class="button-wrap my-3">
-                                <button class="button is-outlined is-primary">Lees de demo</button>
-                                <button class="button is-outlined is-primary">Koop het hier</button>
+                                <a class="button is-outlined is-primary">Lees de demo</a>
+                                <a href="https://www.boekenbestellen.nl/boek/cantor/9789082522105" class="button is-outlined is-primary">Koop het hier</a>
                             </div>
                         </div>
                     </div>
@@ -71,24 +103,21 @@
 {{-- About me --}}
 <div>
     @auth
-        
-            <a href="
-                @if ($aboutPost->isEmpty()) 
-                    {{ route('post.create', ['post' => 'over mij']) }} 
-                @else 
-                    {{ route('post.edit', $aboutPost[0]->id) }} 
-                @endif
-            ">
-                <div class="edit">
-                    <span class="edit-icon">
-                        <p>
-                            <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost->isEmpty()) Creëer @else Pas aan @endif</span>
-                        </p>
-                    </span>
-                </div>
-            </a>
-        
-        
+        <a href="
+            @if ($aboutPost->isEmpty()) 
+                {{ route('post.create', ['post' => 'over mij']) }} 
+            @else 
+                {{ route('post.edit', $aboutPost[0]->id) }} 
+            @endif
+        ">
+            <div class="edit">
+                <span class="edit-icon">
+                    <p>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost->isEmpty()) Creëer @else Pas aan @endif</span>
+                    </p>
+                </span>
+            </div>
+        </a>
     @endauth
 
     <div class="container" id="section1">
