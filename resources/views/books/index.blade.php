@@ -33,7 +33,7 @@
                                             @csrf
                                             <input type="checkbox" name="featured" 
                                                 @if($book->featured === 1) 
-                                                    checked 
+                                                    checked disabled 
                                                 @else 
                                                     '' 
                                                 @endif 

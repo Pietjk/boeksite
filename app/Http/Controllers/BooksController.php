@@ -42,23 +42,19 @@ class BooksController extends Controller
             'description' => ['required', 'string', 'min:3']
         ]);
 
-        $isFeatured;
+        $isFeatured = $request->has('featured');
         $featuredBooks = Book::whereFeatured(true);
 
-        // Check if user wants the book to be featured or if there currently is a book that is featured
-        if ($request->featured === null && $featuredBooks->count() !== 0)
-        {
-            $isFeatured = false;
-        }
-        elseif ($request->featured !== null || $featuredBooks->count() <= 0)
+        if ($featuredBooks->isEmpty())
         {
             $isFeatured = true;
         }
-
-        // Check if there are currently books that are featured if so remove the featured tag
-        if ($isFeatured === true) 
+        else 
         {
-            dd($featuredBooks->update(['featured' => false]));
+            if ($isFeatured)
+            {
+                $featuredBooks->update(['featured' => false]);
+            }
         }
         
         // Create the book
@@ -114,7 +110,8 @@ class BooksController extends Controller
 
     public function feature(Request $request, Book $book)
     {
-        // dd($book);
-        dd($book->update(['featured' => true]));
+        Book::whereFeatured(true)->update(['featured' => false]);
+        $book->update(['featured' => true]);
+        return back();
     }
 }

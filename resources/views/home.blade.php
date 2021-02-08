@@ -45,7 +45,7 @@
                             </h1>
                             <div class="text">
                                 @php
-                                    if($aboutPost->isEmpty()) 
+                                    if($books->isEmpty()) 
                                     {
                                         echo('Het lijkt erop dat er hier op dit moment nog geen content is');
                                     } 
