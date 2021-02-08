@@ -14,7 +14,9 @@ class BooksController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+
+        return view('books.index', compact('books'));
     }
 
     /**
@@ -56,7 +58,7 @@ class BooksController extends Controller
         // Check if there are currently books that are featured if so remove the featured tag
         if ($isFeatured === true) 
         {
-            $featuredBooks->update(['featured' => false]);
+            dd($featuredBooks->update(['featured' => false]));
         }
         
         // Create the book
@@ -108,5 +110,11 @@ class BooksController extends Controller
     public function destroy(Book $book)
     {
         //
+    }
+
+    public function feature(Request $request, Book $book)
+    {
+        // dd($book);
+        dd($book->update(['featured' => true]));
     }
 }

@@ -18,6 +18,7 @@ Route::get('/', [App\Http\Controllers\ContentController::class, 'index'])->name(
 Route::middleware('auth')->group(function () {
     Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'destroy', 'index']);
     Route::resource('book', App\Http\Controllers\BooksController::class);
+    Route::post('/book/{id}/feature', [App\Http\Controllers\BooksController::class, 'feature'])->name('book.feature');
 });
 
 Auth::routes(['register' => false]);

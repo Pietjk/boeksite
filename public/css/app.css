@@ -2949,8 +2949,8 @@ fieldset[disabled] .button {
 }
 
 .table {
-  background-color: #F9F9F9;
-  color: #363636;
+  background-color: #585858;
+  color: #d8d8d8;
 }
 
 .table td,
@@ -3086,7 +3086,7 @@ fieldset[disabled] .button {
 .table thead td,
 .table thead th {
   border-width: 0 0 2px;
-  color: #363636;
+  color: #d8d8d8;
 }
 
 .table tfoot {
@@ -3123,11 +3123,11 @@ fieldset[disabled] .button {
 }
 
 .table.is-hoverable tbody tr:not(.is-selected):hover {
-  background-color: #fafafa;
+  background-color: #4c4c4c;
 }
 
 .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover {
-  background-color: #fafafa;
+  background-color: #4c4c4c;
 }
 
 .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
@@ -12952,7 +12952,7 @@ body > div:nth-child(odd) .label {
 }
 
 .login-container .panel .panel-block .label {
-  color: #121212;
+  color: #d8d8d8;
 }
 
 .form-container {
@@ -12964,11 +12964,27 @@ body > div:nth-child(odd) .label {
 }
 
 .form-container .panel-block .label {
-  color: #121212;
+  color: #d8d8d8;
 }
 
 .form-container .panel-block .columns {
   width: 100%;
+}
+
+.form-container .button-box {
+  background-color: #585858;
+}
+
+.table-container table .table-checkbox {
+  text-align: center;
+}
+
+.table-container table .edit-icon {
+  color: #FDAD00;
+}
+
+.table-container table .delete-icon {
+  color: #e3342f;
 }
 
 @media (max-width: 768px) {

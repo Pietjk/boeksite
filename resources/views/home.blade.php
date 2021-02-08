@@ -61,7 +61,7 @@
                             </div>
                             <div class="button-wrap my-3">
                                 <a class="button is-outlined is-primary">Lees de demo</a>
-                                <a href="https://www.boekenbestellen.nl/boek/cantor/9789082522105" class="button is-outlined is-primary">Koop het hier</a>
+                                <a href="http://www.boekenbestellen.nl/shop/winkelwagen/add/1/34894/1" class="button is-outlined is-primary">Koop het hier</a>
                             </div>
                         </div>
                     </div>

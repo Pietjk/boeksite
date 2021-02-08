@@ -162,7 +162,7 @@ body > div:nth-child(odd) {
             background-color: $grey;
             
             .label {
-                color: $black;
+                color: $lightgrey;
             }
         }
     }
@@ -175,15 +175,30 @@ body > div:nth-child(odd) {
         background-color: $grey;
 
         .label {
-            color: $black;
+            color: $lightgrey;
         }
 
         .columns {
             width: 100%;
         }
     }
+
+    .button-box {
+        background-color: $grey;
+    }
 }
 
+.table-container table {
+    .table-checkbox {
+        text-align: center;
+    }
+    .edit-icon {
+        color: $primary;
+    }
+    .delete-icon {
+        color: $red;
+    }
+}
 
 @media (max-width: 768px)
 {

@@ -9,6 +9,8 @@ $line-height-base: 1.6;
 // Colors
 $yellow: #FDAD00;
 $grey:#585858;
+$hovergrey:#4c4c4c;
+$lightgrey:#d8d8d8;
 $black: #121212;
 $white: #F9F9F9;
 
@@ -22,6 +24,11 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
-//bulma colors
+// Bulma colors
 $primary: $yellow;
 
+// Bulma edits
+$table-head-cell-color: $lightgrey;
+$table-color: $lightgrey;
+$table-background-color: $grey;
+$table-row-hover-background-color: $hovergrey;
