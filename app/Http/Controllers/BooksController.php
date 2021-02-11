@@ -40,7 +40,7 @@ class BooksController extends Controller
         $validated = $request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
             'description' => ['required', 'string', 'min:3'],
-            'link' => ['required', 'string']
+            'link' => ['required', 'string', 'starts_with:https://,http://']
         ]);
 
         $featuredBooks = Book::whereFeatured(true);
@@ -101,7 +101,7 @@ class BooksController extends Controller
         $validated = $request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
             'description' => ['required', 'string', 'min:3'],
-            'link' => ['required', 'string']
+            'link' => ['required', 'string', 'starts_with:https://,http://']
         ]);
 
         $featuredBooks = Book::where('id', '!=', $book->id)->whereFeatured(true);
