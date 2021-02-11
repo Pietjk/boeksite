@@ -45,7 +45,7 @@ class PostsController extends Controller
 
         Post::create($validated + ['order' => $order]);
 
-        return redirect('/');
+        return redirect(route('home'));
     }
 
     /**

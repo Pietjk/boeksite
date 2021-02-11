@@ -61,14 +61,13 @@
                             </div>
                             <div class="button-wrap my-3">
                                 <a class="button is-outlined is-primary">Lees de demo</a>
-                                <a href="http://www.boekenbestellen.nl/shop/winkelwagen/add/1/34894/1" class="button is-outlined is-primary">Koop het hier</a>
+                                <a href="{{ $featuredBook[0]->link }}" class="button is-outlined is-primary">Koop het hier</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="hero-foot">
-                
             </div>
         </section>
     </div>

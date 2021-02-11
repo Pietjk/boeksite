@@ -53,7 +53,7 @@ body > div:nth-child(odd) {
 }
 
 .has-bg-img { 
-    background: url('https://www.stylist.co.uk/images/app/uploads/2019/12/17162852/the-end-of-a-book-1268x845.jpeg?w=1640&amp;h=1&amp;fit=max&amp;auto=format%2Ccompress')center center; 
+    background: url('/images/header.jpg')center left; 
     background-size:cover;
 
     .notification {
@@ -188,16 +188,27 @@ body > div:nth-child(odd) {
     }
 }
 
-.table-container table {
-    .table-checkbox {
-        text-align: center;
+.table-container {
+    width: 100%;
+
+    table {
+        width: 100%;
+        
+        .table-checkbox {
+            text-align: center;
+        }
+        .edit-icon {
+            color: $primary;
+        }
+        .delete-icon {
+            color: $red;
+        }
     }
-    .edit-icon {
-        color: $primary;
-    }
-    .delete-icon {
-        color: $red;
-    }
+}
+
+.info-box {
+    width: 100%;
+    color: $lightgrey;
 }
 
 @media (max-width: 768px)

@@ -19,14 +19,17 @@
                 @csrf                
                 <div class="panel-block">
                     <div class="columns is-multiline">
-                        
                         <div class="column is-12">
-                            <label for="text" class="label">Titel</label>
+                            <label for="text" class="label">De titel van het boek</label>
                                 <input type="text" class="input" name="name" placeholder="Titel" value="{{ old('name') }}">
                         </div>
                         <div class="column is-12">
-                            <label for="text" class="label">Text</label>
-                                <textarea type="text" class="textarea" name="description" placeholder="Text">{{ old('description') }}</textarea>
+                            <label for="text" class="label">De beschrijving van het boek</label>
+                            <textarea type="text" class="textarea" name="description" placeholder="Text">{{ old('description') }}</textarea>
+                        </div>
+                        <div class="column is-12">
+                            <label for="text" class="label">De link naar de winkelpagina</label>
+                                <input type="text" class="input" name="link" placeholder="Link" value="{{ old('link') }}">
                         </div>
                         <div class="column is-12">
                             <div class="box">

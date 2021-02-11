@@ -39,28 +39,32 @@ class BooksController extends Controller
     {
         $validated = $request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
-            'description' => ['required', 'string', 'min:3']
+            'description' => ['required', 'string', 'min:3'],
+            'link' => ['required', 'string']
         ]);
 
-        $isFeatured = $request->has('featured');
         $featuredBooks = Book::whereFeatured(true);
 
-        if ($featuredBooks->isEmpty())
+        // Check if user wants the book to be featured or if there currently is a book that is featured
+        if ($request->featured === null && $featuredBooks->count() !== 0)
         {
-            $isFeatured = true;
+            $isFeatured = false;
         }
-        else 
+        elseif ($request->featured !== null || $featuredBooks->count() <= 0)
         {
-            if ($isFeatured)
-            {
-                $featuredBooks->update(['featured' => false]);
-            }
+        $isFeatured = true;
         }
-        
+
+        // Check if there are currently books that are featured if so remove the featured tag
+        if ($isFeatured === true)
+        {
+            $featuredBooks->update(['featured' => false]);
+        }
+
         // Create the book
         Book::create($validated + ['featured' => $isFeatured]);
 
-        return redirect('/');
+        return redirect(route('book.index'));
     }
 
     /**
@@ -82,7 +86,7 @@ class BooksController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -94,7 +98,34 @@ class BooksController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $validated = $request->validateWithBag('form-feedback', [
+            'name' => ['required', 'min:3', 'string', 'max:255'],
+            'description' => ['required', 'string', 'min:3'],
+            'link' => ['required', 'string']
+        ]);
+
+        $featuredBooks = Book::where('id', '!=', $book->id)->whereFeatured(true);
+
+        // Check if user wants the book to be featured or if there currently is a book that is featured
+        if ($request->featured === null && $featuredBooks->count() !== 0)
+        {
+            $isFeatured = false;
+        }
+        elseif ($request->featured !== null || $featuredBooks->count() == 0)
+        {
+            $isFeatured = true;
+        }
+
+        // Check if there are currently books that are featured if so remove the featured tag
+        if ($isFeatured === true)
+        {
+            $featuredBooks->update(['featured' => false]);
+        }
+
+        // Create the book
+        $book->update($validated + ['featured' => $isFeatured]);
+
+        return redirect(route('book.index'));
     }
 
     /**
@@ -105,7 +136,17 @@ class BooksController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        if ($book->featured)
+        {
+            $newFeatured = Book::where('id', '!=', $book->id)->first();
+
+            if ($newFeatured != null) {
+                $newFeatured->update(['featured' => true]);
+            }
+        }
+
+        $book->delete();
+        return back();
     }
 
     public function feature(Request $request, Book $book)
