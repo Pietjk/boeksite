@@ -82,15 +82,36 @@
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="container">
-                    <div class="slider center">
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                    </div>
-                  </div>
+                    <div class="slider">
+                        <div class="slides">
+                            <div id="slide-1">
+                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                <p class="image-text">Ricards Requim</p>
+                            </div>
+                            <div id="slide-2">
+                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                <p class="image-text">Laura</p>
+                            </div>
+                            <div id="slide-3">
+                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                <p class="image-text">Cantor</p>
+                            </div>
+                            <div id="slide-4">
+                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                <p class="image-text">Sinp</p>
+                            </div>
+                            <div id="slide-5">
+                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                <p class="image-text">Arie 2</p>
+                            </div>
+                        </div>
+                    
+                        <a class="image-button" href="#slide-1">Ricards Requim</a>
+                        <a class="image-button" href="#slide-2">Laura</a>
+                        <a class="image-button" href="#slide-3">Cantor</a>
+                        <a class="image-button" href="#slide-4">Sinp</a>
+                        <a class="image-button" href="#slide-5">Arie 2</a>
+                      </div>
             </div>
             <div class="hero-foot">
                 
