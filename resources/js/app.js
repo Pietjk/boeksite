@@ -12,9 +12,8 @@ function getScrollPosition() {
 function ScrollPositionResetter() {
     position = getScrollPosition();
 
-    disableScroll();
     setTimeout(() => { window.scrollTo(0, position) }, 5);
-    enableScroll();
+    
     console.log(position);
 }
 

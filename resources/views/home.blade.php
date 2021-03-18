@@ -78,41 +78,53 @@
         <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>
     @endauth
 
-    <div class="container" id="section1">
-        <section class="hero is-fullheight">
+    <div class="container " id="section1">
+        <section class="hero is-fullheight" id="#slide-1">
             <div class="hero-body">
                 <div class="container">
-                    <div class="slider">
-                        <div class="slides">
-                            <div id="slide-1">
-                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
-                                <p class="image-text">Ricards Requim</p>
-                            </div>
-                            <div id="slide-2">
-                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
-                                <p class="image-text">Laura</p>
-                            </div>
-                            <div id="slide-3">
-                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
-                                <p class="image-text">Cantor</p>
-                            </div>
-                            <div id="slide-4">
-                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
-                                <p class="image-text">Sinp</p>
-                            </div>
-                            <div id="slide-5">
-                                <img  class="image is-4by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
-                                <p class="image-text">Arie 2</p>
-                            </div>
+                    <div id="intro" class="slider glide glide--ltr glide--carousel glide--swipeable">
+                        <div class="slider__track glide__track" data-glide-el="track">
+                          <ul class="slider__slides glide__slides">
+                            <li class="slider__frame glide__slide 1">
+                                <img  class="image carousel-image" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                {{-- <p class="image-text">Ricards Requim</p> --}}
+                            </li>
+                            <li class="slider__frame glide__slide 2">
+                                <img  class="image carousel-image" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                {{-- <p class="image-text">Cantor</p> --}}
+                            </li>
+                            <li class="slider__frame glide__slide 3">
+                                <img  class="image carousel-image" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                {{-- <p class="image-text">Laura</p> --}}
+                            </li>
+                            <li class="slider__frame glide__slide 4">
+                                <img  class="image carousel-image" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                {{-- <p class="image-text">Sinp</p> --}}
+                            </li>
+                            <li class="slider__frame glide__slide 5">
+                                <img  class="image carousel-image" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                {{-- <p class="image-text">Arie 2</p> --}}
+                            </li>
+                          </ul>
                         </div>
-                    
-                        <a class="image-button" href="#slide-1">Ricards Requim</a>
-                        <a class="image-button" href="#slide-2">Laura</a>
-                        <a class="image-button" href="#slide-3">Cantor</a>
-                        <a class="image-button" href="#slide-4">Sinp</a>
-                        <a class="image-button" href="#slide-5">Arie 2</a>
-                      </div>
-            </div>
+                        <div data-glide-el="controls">
+                          <button class="slider__arrow slider__arrow--prev glide__arrow glide__arrow--prev" data-glide-dir="<">
+                          <i class="fas fa-arrow-left"></i>
+                          </button>
+                          <button class="slider__arrow slider__arrow--next glide__arrow glide__arrow--next" data-glide-dir=">">
+                          <i class="fas fa-arrow-right"></i>
+                          </button>
+                        </div>
+                        <div class="slider__bullets glide__bullets" data-glide-el="controls[nav]">
+                          <button class="slider__bullet glide__bullet" data-glide-dir="=0"></button>
+                          <button class="slider__bullet glide__bullet" data-glide-dir="=1"></button>
+                          <button class="slider__bullet glide__bullet" data-glide-dir="=2"></button>
+                          <button class="slider__bullet glide__bullet glide__bullet--active" data-glide-dir="=3"></button>
+                          <button class="slider__bullet glide__bullet" data-glide-dir="=4"></button>
+                          
+                        </div>
+                      </div>                      
+                </div>
             <div class="hero-foot">
                 
             </div>
