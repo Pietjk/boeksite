@@ -39,19 +39,33 @@
                 var glide = new Glide('.glide', {
                 type: 'carousel',
                 focusAt: 'center',
-                perView: 3,
+                perView: 2.5,
                 animationDuration: 300,
                 hoverpause: true,
-                peek: {
-                    before: 30,
-                    after: 30
-                },
+                // peek: {
+                //     before: 0,
+                //     after: 0
+                // },
                 breakpoints: {
-                    800: {
+                    1408: {
                     perView: 2
                     },
-                    620: {
-                    perView: 1
+                    1023: {
+                        perView: 1.7,
+                    },
+                    750: {
+                    perView: 1.2,
+                    peek: {
+                        before: 50,
+                        after: 5
+                    },
+                    },
+                    542: {
+                    perView: 1,
+                    peek: {
+                        before: 0,
+                        after: 0
+                    },
                     }
                 }
                 })
