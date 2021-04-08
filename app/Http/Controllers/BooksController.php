@@ -40,7 +40,7 @@ class BooksController extends Controller
         $validated = $request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
             'description' => ['required', 'string', 'min:3'],
-            'link' => ['required', 'string', 'starts_with:https://,http://']
+            'link' => ['required', 'string', 'active_url'],
         ]);
 
         $featuredBooks = Book::whereFeatured(true);
@@ -52,7 +52,7 @@ class BooksController extends Controller
         }
         elseif ($request->featured !== null || $featuredBooks->count() <= 0)
         {
-        $isFeatured = true;
+            $isFeatured = true;
         }
 
         // Check if there are currently books that are featured if so remove the featured tag
@@ -154,5 +154,10 @@ class BooksController extends Controller
         Book::whereFeatured(true)->update(['featured' => false]);
         $book->update(['featured' => true]);
         return back();
+    }
+
+    public function choice(Book $book)
+    {
+        return view('books.choice', compact('book'));
     }
 }

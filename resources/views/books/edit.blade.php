@@ -8,7 +8,7 @@
         <div class="panel is-primary">
             <div class="panel-heading">
                 <span class="pr-3">
-                    <a href="{{ route('book.index') }}" class="button is-primary is-small"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ route('book.choice', $book) }}" class="button is-primary is-small"><i class="fas fa-arrow-left"></i></a>
                 </span>
                 <span>
                     Update "{{ $book->name }}"

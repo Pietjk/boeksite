@@ -29,48 +29,9 @@
                         </div>
                         <div class="column is-12">
                             <label for="text" class="label">De link naar de winkelpagina</label>
-                                <input type="text" class="input" name="link" placeholder="Link" value="{{ old('link') }}">
+                                <input type="text" class="input" name="link" placeholder="Bijv. https://www.rubenkorfmaker.nl" value="{{ old('link') }}">
                         </div>
-                        <div class="column is-12">
-                            <label for="text" class="label">De <b>BOEK OMSLAG</b> afbeelding</label>
-                            <div class="box">
-                                <div class="file file-upload has-name is-primary is-medium is-fullwidth" id="cover-upload">
-                                    <label class="file-label">
-                                        <input class="file-input" type="file" name="resume">
-                                        <span class="file-cta">
-                                            <span class="file-icon">
-                                                <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="file-label">
-                                                Kies een bestand...
-                                            </span>
-                                        </span>
-                                        <span class="file-name">
-                                            Geen bestand geselecteerd
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                            <label for="text" class="label">De <b>HEADER</b> afbeelding</label>
-                            <div class="box">
-                                <div class="file file-upload has-name is-primary is-medium is-fullwidth" id="header-upload">
-                                    <label class="file-label">
-                                        <input class="file-input" type="file" name="resume">
-                                        <span class="file-cta">
-                                            <span class="file-icon">
-                                                <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="file-label">
-                                                Kies een bestand...
-                                            </span>
-                                        </span>
-                                        <span class="file-name">
-                                            Geen bestand geselecteerd
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="column is-12">
                             <div class="box">
                                 <label for="text" class="checkbox">
@@ -89,22 +50,4 @@
             </form>
         </div>
     </div>
-
-    <script>
-        const coverInput = document.querySelector('#cover-upload input[type=file]');
-        const headerInput = document.querySelector('#header-upload input[type=file]');
-
-        coverInput.onchange = () => {
-            if (coverInput.files.length > 0) {
-                const fileName = document.querySelector('#cover-upload .file-name');
-                fileName.textContent = coverInput.files[0].name;
-            }
-        }
-        headerInput.onchange = () => {
-            if (headerInput.files.length > 0) {
-                const fileName = document.querySelector('#header-upload .file-name');
-                fileName.textContent = headerInput.files[0].name;
-            }
-        }
-    </script>
 @endsection

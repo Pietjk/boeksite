@@ -40,7 +40,7 @@
                                                 >
                                             </form>
                                         </td>
-                                        <td><a href="{{ route('book.edit', $book) }}"><span class="edit-icon"><i class="far fa-edit"></i></span></a></td>
+                                        <td><a href="{{ route('book.choice', $book) }}"><span class="edit-icon"><i class="far fa-edit"></i></span></a></td>
                                         <td>
                                             <form action="{{ route('book.destroy', $book) }}" method="post" id="deleteBook{{ $book->id }}">
                                                 @method('DELETE')

@@ -16,7 +16,7 @@
             <div class="edit">
                 <span class="edit-icon">
                     <p>
-                        <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost->isEmpty()) Creëer @else Pas aan @endif</span>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($featuredBook->isEmpty()) Creëer @else Pas aan @endif</span>
                     </p>
                 </span>
             </div>
@@ -43,26 +43,28 @@
                                     {{ $featuredBook[0]->name }}
                                 @endif
                             </h1>
-                            <div class="text">
-                                @php
-                                    if($books->isEmpty()) 
-                                    {
-                                        echo('Het lijkt erop dat er hier op dit moment nog geen content is');
-                                    } 
-                                    else 
-                                    {
-                                        echo(
-                                            nl2br(
-                                                $featuredBook[0]->description
-                                            )
-                                        );
-                                    }
-                                @endphp
-                            </div>
-                            <div class="button-wrap my-3">
-                                <a class="button is-outlined is-primary">Lees de demo</a>
-                                <a href="{{ $featuredBook[0]->link }}" class="button is-outlined is-primary">Koop het hier</a>
-                            </div>
+                                @if($books->isEmpty())
+                                    <div class="text">
+                                        @php 
+                                            echo('Het lijkt erop dat er hier op dit moment nog geen content is');
+                                        @endphp
+                                    </div>
+                                @else
+                                    <div class="text">
+                                        @php
+                                            echo(
+                                                nl2br(
+                                                    $featuredBook[0]->description
+                                                )
+                                            );
+                                        @endphp
+                                    </div>
+
+                                    <div class="button-wrap my-3">
+                                        <a class="button is-outlined is-primary">Lees de demo</a>
+                                        <a href="{{ $featuredBook[0]->link }}" class="button is-outlined is-primary">Koop het hier</a>
+                                    </div>
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -81,37 +83,49 @@
     <div class="container " id="section1">
         <section class="hero is-fullheight">
             <div class="hero-head">
-                <div class="section has-text-centered mt-5">
+                <div class="section has-text-centered">
                     <h1 class="title pt-5">Alle boeken</h1>
+                    <p>Op deze plek staat een collectie van alle boeken die ik heb geschreven. Kijk gerust even rond!</p>
                 </div>
             </div>
             <div class="hero-body px-0">
-                <div class="container">
-                    <div id="intro" class="slider glide glide--ltr glide--carousel glide--swipeable">
-                        <div class="slider__track glide__track" data-glide-el="track">
-                          <ul class="slider__slides glide__slides">
-                            @foreach($books as $book)
-                                <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
-                                    <img  class="image is-4x3 carousel-image" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
-                                    <div class="overlay">
-                                        <div class="img-text">
-                                            {{ $book->name }}
+                @if ($books->isEmpty())
+                    <h1 class="title">Er zijn op dit moment geen boeken</h1>
+                @else
+                    <div class="container">
+                        <div id="intro" class="slider glide glide--ltr glide--carousel glide--swipeable">
+                            <div class="slider__track glide__track" data-glide-el="track">
+                            <ul class="slider__slides glide__slides">
+                                @foreach($books as $book)
+                                    <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
+                                        <img  class="image is-4x3 carousel-image" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                        <div class="overlay">
+                                            <div class="img-text">
+                                                <h1 class="title">{{ $book->name }}</h1>
+                                                @php
+                                                    echo(
+                                                        nl2br(
+                                                            $book->description
+                                                        )
+                                                    )
+                                                @endphp
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                          </ul>
-                        </div>
-                        <div data-glide-el="controls">
-                            <button class="slider__arrow slider__arrow--prev glide__arrow glide__arrow--prev" data-glide-dir="<">
-                                <span class="icon"><i class="fas fa-chevron-left"></i></span>
-                            </button>
-                            <button class="slider__arrow slider__arrow--next glide__arrow glide__arrow--next" data-glide-dir=">">
-                                <span class="icon"><i class="fas fa-chevron-right"></i></span>
-                            </button>
-                        </div>
-                      </div>                      
-                </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            </div>
+                            <div data-glide-el="controls">
+                                <button class="slider__arrow slider__arrow--prev glide__arrow glide__arrow--prev" data-glide-dir="<">
+                                    <span class="icon"><i class="fas fa-chevron-left"></i></span>
+                                </button>
+                                <button class="slider__arrow slider__arrow--next glide__arrow glide__arrow--next" data-glide-dir=">">
+                                    <span class="icon"><i class="fas fa-chevron-right"></i></span>
+                                </button>
+                            </div>
+                        </div>                      
+                    </div>
+                @endif
             <div class="hero-foot">
                 
             </div>

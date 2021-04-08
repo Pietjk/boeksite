@@ -186,6 +186,14 @@ body > div:nth-child(odd) {
     .button-box {
         background-color: $grey;
     }
+
+    .file-box {
+        background-color: $grey;
+    }
+
+    .file-name {
+        color: $lightgrey;
+    }
 }
 
 .table-container {
@@ -269,7 +277,6 @@ body > div:nth-child(odd) {
 .slider__arrow--prev:hover {
     background: rgb(0,0,0);
     background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(0,0,0,0) 100%);
-    -webkit-transition: all 0.4s;
 }
 
 .slider__arrow--next {
@@ -335,8 +342,14 @@ body > div:nth-child(odd) {
   }
   
   .img-text {
-    width: 100px;
-    background:maroon;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    top: 0;
+
+    p {
+        overflow: hidden;
+    }
   }
 
 .glide__slide {
