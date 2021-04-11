@@ -30,7 +30,7 @@
                     <div class="level">
                                             
                         <div class="column">
-                            <img class="image is-2by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                            <img class="image is-2by3 is-paddingless" src="{{ asset($featuredCover[0]->filepath) }}" alt="">
                         </div>
 
                         <div class="column is-1"></div>
