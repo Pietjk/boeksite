@@ -21,7 +21,7 @@ class ContentController extends Controller
 
         $featuredBook = $book->whereFeatured(true)->get();
 
-        if(empty($featuredBook))
+        if($featuredBook->count() > 0)
         {
             $featuredBookName = strtolower(str_replace(' ', '', $featuredBook[0]->name));    
             $featuredHeader = File::where('book_id', '=', $featuredBook[0]->id)->where('filename', '=', $featuredBookName.'header')->get();
