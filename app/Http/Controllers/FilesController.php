@@ -45,7 +45,7 @@ class FilesController extends Controller
                 ]);
 
                 $name = strtolower(str_replace(' ', '', $book->name . 'cover'));
-                $request->bookCover->storeAs('/public', $name.".png");
+                $request->bookCover->storeAs('public', $name.".png");
                 $url = Storage::url($name.".png");
                 
                 File::whereFilename($name)->delete();
@@ -66,7 +66,7 @@ class FilesController extends Controller
                 ]);
 
                 $name = strtolower(str_replace(' ', '', $book->name . 'header'));
-                $request->bookHeader->storeAs('/public', $name.".png");
+                $request->bookHeader->storeAs('public', $name.".png");
                 $url = Storage::url($name.".png");
                 
                 File::whereFilename($name)->delete();

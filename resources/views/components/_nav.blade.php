@@ -1,4 +1,4 @@
-<section class="hero is-fullheight has-bg-img">
+<section class="hero is-fullheight has-bg-img" @if(isset($featuredHeader[0])) style="background-image:url('{{ asset($featuredHeader[0]->filepath) }}')" @endif>
     @auth
     <div class="hero-head has-text-centered mb-5">
         <div class="notification is-primary">
@@ -16,7 +16,7 @@
     @endauth
     <div class="hero-body">
         <div class="container body">
-            <h1 class="title">Ricards  Requiem</h1>
+            @if(isset($featuredBook[0]))<h1 class="title">{{ $featuredBook[0]->name }}</h1>@endif
             <h2 class="subtitle">Ruben Korfmaker</h2>
         </div>
     </div>

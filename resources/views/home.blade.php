@@ -26,11 +26,16 @@
     <div class="container" id="section1">
         <section class="hero is-fullheight">
             <div class="hero-body">
-                <div class="columns">
+                <div class="columns is-multiline is-centered">
                     <div class="level">
-                                            
                         <div class="column">
-                            <img class="image is-2by3 is-paddingless" src="{{ asset($featuredCover[0]->filepath) }}" alt="">
+                            @if(isset($featuredHeader[0]))
+                                <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover[0]->filepath) }}" alt="">
+                            @else
+                                <div class="placeholder-image has-text-centered px-5 py-5">
+                                    <p>De afbeeldingen zijn nog niet toegevoegd</p>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="column is-1"></div>
@@ -97,8 +102,9 @@
                             <div class="slider__track glide__track" data-glide-el="track">
                             <ul class="slider__slides glide__slides">
                                 @foreach($books as $book)
+                                {{-- @dd($book->files->filter->book($book->id)) --}}
                                     <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
-                                        <img  class="image is-4x3 carousel-image" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                                        <img  class="image is-4x3 carousel-image" src="" alt="">
                                         <div class="overlay">
                                             <div class="img-text">
                                                 <h1 class="title">{{ $book->name }}</h1>
@@ -160,7 +166,7 @@
                     <div class="level">
                                             
                         <div class="column">
-                            <img class="image is-2by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                            <img class=" section-image is-2by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
                         </div>
 
                         <div class="column is-1"></div>

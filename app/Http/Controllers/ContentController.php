@@ -20,12 +20,21 @@ class ContentController extends Controller
         $books = $book->all();
 
         $featuredBook = $book->whereFeatured(true)->get();
-        $featuredBookName =  strtolower(str_replace(' ', '', $featuredBook[0]->name));
-        // All file variables
+
+        if(empty($featuredBook))
+        {
+            $featuredBookName = strtolower(str_replace(' ', '', $featuredBook[0]->name));    
+            $featuredHeader = File::where('book_id', '=', $featuredBook[0]->id)->where('filename', '=', $featuredBookName.'header')->get();
+            $featuredCover = File::where('book_id', '=', $featuredBook[0]->id)->where('filename', '=', $featuredBookName.'cover')->get();
+        }
+        else
+        {
+            $featuredHeader = File::all();
+            $featuredCover = File::all();
+        }
+
         $files = $file->all();
 
-        $featuredHeader = $files->where('book_id', '=', $featuredBook[0]->id)->where('filename', '=', $featuredBookName.'header');
-        $featuredCover = $files->where('book_id', '=', $featuredBook[0]->id)->where('filename', '=', $featuredBookName.'cover');
         $images = $files->filter(function($value, $key) {
             if (strpos($value->filename, 'cover') != false) {
                 return $value;

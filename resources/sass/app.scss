@@ -53,7 +53,7 @@ body > div:nth-child(odd) {
 }
 
 .has-bg-img { 
-    background: url('/images/header.jpg')center left; 
+    background: center left; 
     background-size:cover;
 
     .notification {
@@ -88,9 +88,21 @@ body > div:nth-child(odd) {
     }
 }
 
-.image{
+.image {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.section-image {
+    width: 100%;
+    max-width: 420px;
+} 
+
+.placeholder-image {
+    min-width: 300px;
+    max-width: 420px;
+    background-color: $hovergrey;
+    height: 520px;
+} 
 
 .button-wrap {
     text-align: center;

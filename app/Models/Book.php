@@ -10,4 +10,9 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'featured', 'link'];
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }
