@@ -11,7 +11,7 @@
                 </a>
             </h1>
         </div>
-        <a href=""><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>
+        @if(isset($featuredHeader[0]))<a href="{{ route('files.create', $featuredBook[0]) }}"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>@endif
     </div>
     @endauth
     <div class="hero-body">

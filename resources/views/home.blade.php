@@ -103,9 +103,9 @@
                             <ul class="slider__slides glide__slides">
                                 @foreach($books as $book)
                                     <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
-                                        <img  class="image is-4x3 carousel-image" src="{{$book->files->filter(function ($value, $key) {
-    return strpos($value['filename'],'cover') !== false;
-})->first()['filepath']}}" alt="">
+                                        <img  class="image is-4x3 carousel-image" @if($book->files->count() > 0) src="{{$book->files->filter(function ($value, $key) {
+                                            return strpos($value['filename'],'cover') !== false;
+                                        })->first()['filepath']}}" @endif alt="">
                                         <div class="overlay">
                                             <div class="img-text">
                                                 <h1 class="title">{{ $book->name }}</h1>
@@ -167,7 +167,7 @@
                     <div class="level">
                                             
                         <div class="column">
-                            <img class=" section-image is-2by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                            <img class=" section-image is-2by3 is-paddingless" src="" alt="">
                         </div>
 
                         <div class="column is-1"></div>
@@ -195,10 +195,6 @@
                                         );
                                     }
                                 @endphp
-                            </div>
-                            <div class="button-wrap my-3">
-                                <button class="button is-outlined is-primary">Lees de demo</button>
-                                <button class="button is-outlined is-primary">Koop het hier</button>
                             </div>
                         </div>
                     </div>
