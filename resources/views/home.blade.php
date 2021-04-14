@@ -1,73 +1,137 @@
 @extends('layouts.app')
 @section('content')
+
+@include('components._nav')
+
 {{-- Primary book --}}
-<div class="even">
+<div>
+    @auth
+        <a href="
+            @if ($books->isEmpty()) 
+                {{ route('book.create') }} 
+            @else 
+                {{ route('book.index') }} 
+            @endif
+        ">
+            <div class="edit">
+                <span class="edit-icon">
+                    <p>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($featuredBook->isEmpty()) Creëer @else Pas aan @endif</span>
+                    </p>
+                </span>
+            </div>
+        </a>
+    @endauth
+
     <div class="container" id="section1">
         <section class="hero is-fullheight">
             <div class="hero-body">
-                <div class="columns">
+                <div class="columns is-multiline is-centered">
                     <div class="level">
-                                            
                         <div class="column">
-                            <img class="image is-2by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                            @if(isset($featuredHeader[0]))
+                                <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover[0]->filepath) }}" alt="">
+                            @else
+                                <div class="placeholder-image has-text-centered px-5 py-5">
+                                    <p>De afbeeldingen zijn nog niet toegevoegd</p>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="column is-1"></div>
 
                         <div class="column">
-                            <h1 class="title">Dolorem vero autem</h1>
-                            <div class="text">
-                                @php
-                                    echo(
-                                        nl2br(
-                                            "
-                                                Pariatur itaque repellat nihil ad distinctio officiis at laboriosam. Sunt optio amet ad et sit aperiam similique est. Amet tenetur voluptatibus itaque dolorem praesentium distinctio molestiae velit maxime. Vero quaerat suscipit mollitia voluptatum sint cupiditate expedita. Et non ullam et voluptatem aliquam debitis.
-                                                Earum excepturi sapiente et cum necessitatibus pariatur. Et impedit eos in quo sapiente optio adipisci in sit. Doloremque voluptate velit incidunt doloremque minima autem blanditiis. Dolorem minus et esse eius quos. Eaque quam doloremque architecto fuga eaque et.
-                                                Similique neque non blanditiis. Facere et amet aut placeat nemo. Vel nam dolor sint saepe esse nostrum voluptatem aspernatur. Nemo quisquam amet error quidem laboriosam amet.
-                                                
-                                                Delectus neque delectus dolore nemo sed. Perspiciatis sint est iure autem nesciunt. Laborum ullam velit quis aut recusandae eligendi exercitationem. Neque maiores eum doloribus enim aut consequatur sapiente. Et suscipit ea quia nulla repellendus eos sed perferendis. Nihil excepturi aut.
-                                                Deserunt sint dolorum accusantium velit. Assumenda vitae laboriosam recusandae facilis vero aspernatur velit suscipit. Dolores animi quia aliquam sit. Officiis libero in eveniet distinctio. Voluptatem et quo animi repellendus rem et veritatis eveniet dicta.
-                                                Praesentium vel sed ullam omnis consectetur nostrum voluptas et. Ullam cumque optio sed illum eligendi. Aut a nemo rerum sapiente ut corrupti ipsa optio sit. Tempora mollitia architecto distinctio suscipit aspernatur. Voluptatem adipisci non consectetur in enim numquam nostrum illum sit. Dignissimos autem eligendi et quam sed et iusto officiis culpa.
-                                                    
-                                                Delectus neque delectus dolore nemo sed. Perspiciatis sint est iure autem nesciunt. Laborum ullam velit quis aut recusandae eligendi exercitationem. Neque maiores eum doloribus enim aut consequatur sapiente. Et suscipit ea quia nulla repellendus eos sed perferendis. Nihil excepturi aut.
-                                                Deserunt sint dolorum accusantium velit. Assumenda vitae laboriosam recusandae facilis vero aspernatur velit suscipit. Dolores animi quia aliquam sit. Officiis libero in eveniet distinctio. Voluptatem et quo animi repellendus rem et veritatis eveniet dicta.
-                                                Praesentium vel sed ullam omnis consectetur nostrum voluptas et. Ullam cumque optio sed illum eligendi. Aut a nemo rerum sapiente ut corrupti ipsa optio sit. Tempora mollitia architecto distinctio suscipit aspernatur. Voluptatem adipisci non consectetur in enim numquam nostrum illum sit. Dignissimos autem eligendi et quam sed et iusto officiis culpa.
-                                            "
-                                        )
-                                    )    
-                                @endphp
-                            </div>
-                            <div class="button-wrap my-3">
-                                <button class="button is-outlined is-primary">Lees de demo</button>
-                                <button class="button is-outlined is-primary">Koop het hier</button>
-                            </div>
+                            <h1 class="title">
+                                @if($books->isEmpty()) 
+                                    Oeps!
+                                @else
+                                    {{ $featuredBook[0]->name }}
+                                @endif
+                            </h1>
+                                @if($books->isEmpty())
+                                    <div class="text">
+                                        @php 
+                                            echo('Het lijkt erop dat er hier op dit moment nog geen content is');
+                                        @endphp
+                                    </div>
+                                @else
+                                    <div class="text">
+                                        @php
+                                            echo(
+                                                nl2br(
+                                                    $featuredBook[0]->description
+                                                )
+                                            );
+                                        @endphp
+                                    </div>
+
+                                    <div class="button-wrap my-3">
+                                        <a class="button is-outlined is-primary">Lees de demo</a>
+                                        <a href="{{ $featuredBook[0]->link }}" class="button is-outlined is-primary">Koop het hier</a>
+                                    </div>
+                                @endif
                         </div>
                     </div>
                 </div>
             </div>
             <div class="hero-foot">
-                
             </div>
         </section>
     </div>
 </div>
-
 {{-- Book list --}}
-<div class="uneven">
-    <div class="container" id="section1">
+<div>
+    @auth
+        <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>
+    @endauth
+
+    <div class="container " id="section1">
         <section class="hero is-fullheight">
-            <div class="hero-body">
-                <div class="container">
-                    <div class="slider center">
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                      <div class="clip"><h3><div class="top">top</div><div><img  class="image is-2by3 is-paddingless px-3" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt=""></div><div class="bottom">btm</div></h3></div>
-                    </div>
-                  </div>
+            <div class="hero-head">
+                <div class="section has-text-centered">
+                    <h1 class="title pt-5">Alle boeken</h1>
+                    <p>Op deze plek staat een collectie van alle boeken die ik heb geschreven. Kijk gerust even rond!</p>
+                </div>
             </div>
+            <div class="hero-body px-0">
+                @if ($books->isEmpty())
+                    <h1 class="title">Er zijn op dit moment geen boeken</h1>
+                @else
+                    <div class="container">
+                        <div id="intro" class="slider glide glide--ltr glide--carousel glide--swipeable">
+                            <div class="slider__track glide__track" data-glide-el="track">
+                            <ul class="slider__slides glide__slides">
+                                @foreach($books as $book)
+                                {{-- @dd($book->files->filter->book($book->id)) --}}
+                                    <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
+                                        <img  class="image is-4x3 carousel-image" src="" alt="">
+                                        <div class="overlay">
+                                            <div class="img-text">
+                                                <h1 class="title">{{ $book->name }}</h1>
+                                                @php
+                                                    echo(
+                                                        nl2br(
+                                                            $book->description
+                                                        )
+                                                    )
+                                                @endphp
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            </div>
+                            <div data-glide-el="controls">
+                                <button class="slider__arrow slider__arrow--prev glide__arrow glide__arrow--prev" data-glide-dir="<">
+                                    <span class="icon"><i class="fas fa-chevron-left"></i></span>
+                                </button>
+                                <button class="slider__arrow slider__arrow--next glide__arrow glide__arrow--next" data-glide-dir=">">
+                                    <span class="icon"><i class="fas fa-chevron-right"></i></span>
+                                </button>
+                            </div>
+                        </div>                      
+                    </div>
+                @endif
             <div class="hero-foot">
                 
             </div>
@@ -76,7 +140,25 @@
 </div>
 
 {{-- About me --}}
-<div class="even">
+<div>
+    @auth
+        <a href="
+            @if ($aboutPost->isEmpty()) 
+                {{ route('post.create', ['post' => 'over mij']) }} 
+            @else 
+                {{ route('post.edit', $aboutPost[0]->id) }} 
+            @endif
+        ">
+            <div class="edit">
+                <span class="edit-icon">
+                    <p>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost->isEmpty()) Creëer @else Pas aan @endif</span>
+                    </p>
+                </span>
+            </div>
+        </a>
+    @endauth
+
     <div class="container" id="section1">
         <section class="hero is-fullheight">
             <div class="hero-body">
@@ -84,32 +166,33 @@
                     <div class="level">
                                             
                         <div class="column">
-                            <img class="image is-2by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
+                            <img class=" section-image is-2by3 is-paddingless" src="https://i.pinimg.com/564x/a9/12/03/a912032ab0b755df1adeb73ffca51a0d.jpg" alt="">
                         </div>
 
                         <div class="column is-1"></div>
 
                         <div class="column">
-                            <h1 class="title">Dolorem vero autem</h1>
+                            <h1 class="title">
+                                @if($aboutPost->isEmpty()) 
+                                    Oeps!
+                                @else
+                                    {{ $aboutPost[0]->name }}
+                                @endif
+                            </h1>
                             <div class="text">
                                 @php
-                                    echo(
-                                        nl2br(
-                                            "
-                                                Pariatur itaque repellat nihil ad distinctio officiis at laboriosam. Sunt optio amet ad et sit aperiam similique est. Amet tenetur voluptatibus itaque dolorem praesentium distinctio molestiae velit maxime. Vero quaerat suscipit mollitia voluptatum sint cupiditate expedita. Et non ullam et voluptatem aliquam debitis.
-                                                Earum excepturi sapiente et cum necessitatibus pariatur. Et impedit eos in quo sapiente optio adipisci in sit. Doloremque voluptate velit incidunt doloremque minima autem blanditiis. Dolorem minus et esse eius quos. Eaque quam doloremque architecto fuga eaque et.
-                                                Similique neque non blanditiis. Facere et amet aut placeat nemo. Vel nam dolor sint saepe esse nostrum voluptatem aspernatur. Nemo quisquam amet error quidem laboriosam amet.
-                                                
-                                                Delectus neque delectus dolore nemo sed. Perspiciatis sint est iure autem nesciunt. Laborum ullam velit quis aut recusandae eligendi exercitationem. Neque maiores eum doloribus enim aut consequatur sapiente. Et suscipit ea quia nulla repellendus eos sed perferendis. Nihil excepturi aut.
-                                                Deserunt sint dolorum accusantium velit. Assumenda vitae laboriosam recusandae facilis vero aspernatur velit suscipit. Dolores animi quia aliquam sit. Officiis libero in eveniet distinctio. Voluptatem et quo animi repellendus rem et veritatis eveniet dicta.
-                                                Praesentium vel sed ullam omnis consectetur nostrum voluptas et. Ullam cumque optio sed illum eligendi. Aut a nemo rerum sapiente ut corrupti ipsa optio sit. Tempora mollitia architecto distinctio suscipit aspernatur. Voluptatem adipisci non consectetur in enim numquam nostrum illum sit. Dignissimos autem eligendi et quam sed et iusto officiis culpa.
-                                                    
-                                                Delectus neque delectus dolore nemo sed. Perspiciatis sint est iure autem nesciunt. Laborum ullam velit quis aut recusandae eligendi exercitationem. Neque maiores eum doloribus enim aut consequatur sapiente. Et suscipit ea quia nulla repellendus eos sed perferendis. Nihil excepturi aut.
-                                                Deserunt sint dolorum accusantium velit. Assumenda vitae laboriosam recusandae facilis vero aspernatur velit suscipit. Dolores animi quia aliquam sit. Officiis libero in eveniet distinctio. Voluptatem et quo animi repellendus rem et veritatis eveniet dicta.
-                                                Praesentium vel sed ullam omnis consectetur nostrum voluptas et. Ullam cumque optio sed illum eligendi. Aut a nemo rerum sapiente ut corrupti ipsa optio sit. Tempora mollitia architecto distinctio suscipit aspernatur. Voluptatem adipisci non consectetur in enim numquam nostrum illum sit. Dignissimos autem eligendi et quam sed et iusto officiis culpa.
-                                            "
-                                        )
-                                    )    
+                                    if($aboutPost->isEmpty()) 
+                                    {
+                                        echo('Het lijkt erop dat er hier op dit moment nog geen content is');
+                                    } 
+                                    else 
+                                    {
+                                        echo(
+                                            nl2br(
+                                                $aboutPost[0]->description
+                                            )
+                                        );
+                                    }
                                 @endphp
                             </div>
                             <div class="button-wrap my-3">
@@ -128,7 +211,25 @@
 </div>
 
 {{-- Contact --}}
-<div class="uneven">
+<div>
+    @auth
+    <a href="
+        @if ($contactPost->isEmpty()) 
+            {{ route('post.create', ['post' => 'contact']) }} 
+        @else 
+            {{ route('post.edit', $contactPost[0]->id) }} 
+        @endif
+    ">
+        <div class="edit">
+            <span class="edit-icon">
+                <p>
+                    <i class="far fa-edit"></i><span class="edit-text">@if ($contactPost->isEmpty()) Creëer @else Pas aan @endif</span>
+                </p>
+            </span>
+        </div>
+    </a>
+    @endauth
+    
     <div class="container" id="section1">
         <section class="hero is-fullheight">
             <div class="hero-body">
@@ -149,19 +250,28 @@
                         <div class="column is-1"></div>
 
                         <div class="column">
-                            <h1 class="title">Dolorem vero autem</h1>
+                            <h1 class="title">
+                                @if($contactPost->isEmpty()) 
+                                    Oeps!
+                                @else
+                                    {{ $contactPost[0]->name }}
+                                @endif
+                            </h1>
                             <div class="text">
                                 @php
-                                echo(
-                                    nl2br(
-                                        "
-                                            Pariatur itaque repellat nihil ad distinctio officiis at laboriosam. Sunt optio amet ad et sit aperiam similique est. Amet tenetur voluptatibus itaque dolorem praesentium distinctio molestiae velit maxime. Vero quaerat suscipit mollitia voluptatum sint cupiditate expedita. Et non ullam et voluptatem aliquam debitis.
-                                            Earum excepturi sapiente et cum necessitatibus pariatur. Et impedit eos in quo sapiente optio adipisci in sit. Doloremque voluptate velit incidunt doloremque minima autem blanditiis. Dolorem minus et esse eius quos. Eaque quam doloremque architecto fuga eaque et.
-                                            Similique neque non blanditiis. Facere et amet aut placeat nemo. Vel nam dolor sint saepe esse nostrum voluptatem aspernatur. Nemo quisquam amet error quidem laboriosam amet.
-                                        "
-                                    )
-                                )    
-                            @endphp
+                                    if($contactPost->isEmpty()) 
+                                    {
+                                        echo('Het lijkt erop dat er hier op dit moment nog geen content is');
+                                    } 
+                                    else 
+                                    {
+                                        echo(
+                                            nl2br(
+                                                $contactPost[0]->description
+                                            )
+                                        );
+                                    }
+                                @endphp
                             </div>
                         </div>
                     </div>

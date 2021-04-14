@@ -9,11 +9,26 @@
 
 html {
     scroll-behavior: smooth;
+    background-color: $black;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 }
 
-.even {
+body > div:nth-child(even) {
     background-color: $grey;
     color: $white;
+
+    .edit {
+        background-color: $primary;
+        
+        .edit-icon{
+
+            color: $grey;
+        }
+    }
 
     .title {
         color: $primary;
@@ -24,7 +39,7 @@ html {
     }
 }
 
-.uneven {
+body > div:nth-child(odd) {
     background-color: $black;
     color: $white;
 
@@ -38,8 +53,15 @@ html {
 }
 
 .has-bg-img { 
-    background: url('https://www.stylist.co.uk/images/app/uploads/2019/12/17162852/the-end-of-a-book-1268x845.jpeg?w=1640&amp;h=1&amp;fit=max&amp;auto=format%2Ccompress')center center; 
+    background: center left; 
     background-size:cover;
+
+    .notification {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 
     .body {
         margin-top: 15%;
@@ -51,13 +73,8 @@ html {
             color: $white;
         } 
     }
-    
-    .foot{
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
 
+      .foot {
         text-align: center;
 
         .icon {
@@ -65,16 +82,27 @@ html {
             color: $yellow;
         } 
         .icon:hover {
-            font-size: 50px;
             color: $grey;
             cursor: pointer;
         } 
     }
 }
 
-.image{
+.image {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.section-image {
+    width: 100%;
+    max-width: 420px;
+} 
+
+.placeholder-image {
+    min-width: 300px;
+    max-width: 420px;
+    background-color: $hovergrey;
+    height: 520px;
+} 
 
 .button-wrap {
     text-align: center;
@@ -83,6 +111,124 @@ html {
         width: 48%;
         margin-bottom: 5px;
     }
+}
+
+.edit {
+    right: 0;
+    background-color: $grey;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 50px;
+    height: 37px;
+    position: absolute;
+    margin-top: 20px;
+    z-index: 1;
+
+    .edit-text {
+        // visibility: hidden;
+        display: none;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 20px;
+    }
+
+    .edit-icon {
+        font-size: 25px;
+        color: $yellow;
+    }
+}
+.edit:hover {
+    background-color: $yellow;
+    width: 120px;
+
+    .edit-text {
+        display: inline;
+    }
+
+    .edit-icon {
+        color: $grey;
+        cursor: pointer;
+    } 
+}
+
+.login-container {
+    margin: 0; 
+    position: absolute; 
+    top: 50%; left: 50%; 
+    -ms-transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+
+    .columns {
+        width: 100%;
+    }
+
+    .panel {
+        max-width: 520px;
+        width: 90%;
+        margin: 0 auto;
+
+        .panel-block {
+            background-color: $grey;
+            
+            .label {
+                color: $lightgrey;
+            }
+        }
+    }
+}
+
+.form-container {
+    margin-top: 3em;
+
+    .panel-block {
+        background-color: $grey;
+
+        .label {
+            color: $lightgrey;
+        }
+
+        .columns {
+            width: 100%;
+        }
+    }
+
+    .button-box {
+        background-color: $grey;
+    }
+
+    .file-box {
+        background-color: $grey;
+    }
+
+    .file-name {
+        color: $lightgrey;
+    }
+}
+
+.table-container {
+    width: 100%;
+
+    table {
+        width: 100%;
+        
+        .table-checkbox {
+            text-align: center;
+        }
+        .edit-icon {
+            color: $primary;
+        }
+        .delete-icon {
+            color: $red;
+        }
+    }
+}
+
+.info-box {
+    width: 100%;
+    color: $lightgrey;
 }
 
 @media (max-width: 768px)
@@ -124,23 +270,109 @@ html {
     }
 }
 
-// Slick js carousel slider styling
-
-  .clip {
-    height: 100px;
+// All Glide js carousel styling
+.slider {
+    max-width: 96vw;
+    text-align: center;
     overflow: hidden;
-    bottom: 0;
+    max-height: 720px;
+    height: 100%; 
   }
-  .center .slick-slide {
-    // background-color: rgba(red, 0.3);
-    // height: 400px;
-    margin: 0 auto;
-  }
-  .center .slick-center h3{
-    .top {
+
+  .glide {
+  cursor: -webkit-grab;
+}
+.slider__arrow--prev {
+    left: 0;
+    padding-left: 1.5rem;
+}
+.slider__arrow--prev:hover {
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(0,0,0,0) 100%);
+}
+
+.slider__arrow--next {
+    right: 0;
+    padding-right: 1.5rem;
+}
+.slider__arrow--next:hover {
+    background: rgb(0,0,0);
+    background: linear-gradient(270deg, rgba(0,0,0,0.8), rgba(0,0,0,0) 100%);
+}
+
+.slider__arrow {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    height: 100%;
+
+    .icon {
+        font-size: 50px;
+        margin-right: 15px;
+        color: $grey;
     }
-    .bottom {
-      font-size: 90%;
-      width: 90%;
+}
+
+.slider__arrow:hover {
+    .icon {
+        color: $primary;
+    }
+}
+
+.slider__frame {
+    height: 720px;
+    width: 520px;
+
+    img {
+        width: 100%;
+        height: inherit;
+    } 
+}
+
+.overlay {
+    opacity: 0;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    color: #fff;
+    background-color: $black;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    width: inherit;
+    position: absolute;
+    max-width: 520px;
+}
+
+  .glide__slide--active:hover .overlay {
+    opacity: 0.9;
+  }
+  
+  .img-text {
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    top: 0;
+
+    p {
+        overflow: hidden;
     }
   }
+
+.glide__slide {
+    height: 720px;
+}
+
+.glide__slide--active {
+    height: 720px;
+    margin-top: 0;
+}
+
+.carousel-image {
+    max-width: 520px;
+}

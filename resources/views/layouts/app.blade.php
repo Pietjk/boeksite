@@ -10,11 +10,13 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="/js/glide/dist/glide.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="stylesheet" href="/js/glide/dist/css/glide.core.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
@@ -25,32 +27,53 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
+    
 </head>
 <body>
-    @include('components._nav')
         @yield('content')
-        
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
         <script>
-            $('.center').slick({
-            centerMode: true,
-            infinite: true,
-            centerPadding: '60px',
-            slidesToShow: 3,
-            speed: 500,
-            variableWidth: false,
-            responsive: [
-            {
-            breakpoint: 1023,
-                settings: {
-                    arrows: true,
-                    centerMode: false,
-                    slidesToShow: 1
+            var slider = document.querySelector('.glide');
+            
+            if (slider) {
+                var glide = new Glide('.glide', {
+                type: 'carousel',
+                focusAt: 'center',
+                perView: 2.5,
+                animationDuration: 300,
+                hoverpause: true,
+                // peek: {
+                //     before: 0,
+                //     after: 0
+                // },
+                breakpoints: {
+                    1408: {
+                    perView: 2
+                    },
+                    1023: {
+                        perView: 1.7,
+                    },
+                    750: {
+                    perView: 1.2,
+                    peek: {
+                        before: 50,
+                        after: 5
+                    },
+                    },
+                    542: {
+                    perView: 1,
+                    peek: {
+                        before: 0,
+                        after: 0
+                    },
+                    }
                 }
+                })
+    
+                glide.mount()
             }
-            ]
-            });
-    </script>
+            
+            
+        </script>
 </body>
 </html>
