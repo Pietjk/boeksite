@@ -18,8 +18,9 @@ class ContentController extends Controller
         $contactPost = $post->whereOrder(2)->get();
         // All book variables
         $books = $book->all();
+        $books->load('files');
 
-        $featuredBook = $book->whereFeatured(true)->get();
+        $featuredBook = $books->where('featured',true);
 
         if($featuredBook->count() > 0)
         {
@@ -33,15 +34,7 @@ class ContentController extends Controller
             $featuredCover = File::all();
         }
 
-        $files = $file->all();
-
-        $images = $files->filter(function($value, $key) {
-            if (strpos($value->filename, 'cover') != false) {
-                return $value;
-            }
-        });
-        
-        return view('home', compact('aboutPost', 'contactPost', 'books', 'featuredBook', 'featuredHeader', 'featuredCover', 'images'));
+        return view('home', compact('aboutPost', 'contactPost', 'books', 'featuredBook', 'featuredHeader', 'featuredCover'));
     }
 }
 // 'firstPost', 'secondPost', 'thirdPost'

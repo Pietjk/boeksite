@@ -102,9 +102,10 @@
                             <div class="slider__track glide__track" data-glide-el="track">
                             <ul class="slider__slides glide__slides">
                                 @foreach($books as $book)
-                                {{-- @dd($book->files->filter->book($book->id)) --}}
                                     <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
-                                        <img  class="image is-4x3 carousel-image" src="" alt="">
+                                        <img  class="image is-4x3 carousel-image" src="{{$book->files->filter(function ($value, $key) {
+    return strpos($value['filename'],'cover') !== false;
+})->first()['filepath']}}" alt="">
                                         <div class="overlay">
                                             <div class="img-text">
                                                 <h1 class="title">{{ $book->name }}</h1>
