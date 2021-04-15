@@ -34,16 +34,26 @@ class PostsController extends Controller
 
         unset($validated['type']);
 
-        if ($request->type === "over mij") 
+        if ($request->type === "alle boeken") 
         {
             $order = 1;
         } 
-        elseif ($request->type === "contact")
+        elseif ($request->type === "over mij")
         {
             $order = 2;
         }
+        elseif ($request->type === "contact")
+        {
+            $order = 3;
+        }
 
         Post::create($validated + ['order' => $order]);
+
+        if ($request->type === "over mij")
+        {
+            $post = Post::whereOrder(2)->pluck('id')->first();
+            return view('posts.choice', compact('post'));
+        }
 
         return redirect(route('home'));
     }

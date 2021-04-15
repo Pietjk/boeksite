@@ -16,7 +16,7 @@
             <div class="edit">
                 <span class="edit-icon">
                     <p>
-                        <i class="far fa-edit"></i><span class="edit-text">@if ($featuredBook->isEmpty()) Creëer @else Pas aan @endif</span>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($featuredBook === null) Creëer @else Pas aan @endif</span>
                     </p>
                 </span>
             </div>
@@ -28,7 +28,7 @@
             <div class="hero-body">
                 <div class="columns is-multiline is-centered">
                     <div class="level">
-                        <div class="column">
+                        <div class="column image-column">
                             @if(isset($featuredHeader[0]))
                                 <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover[0]->filepath) }}" alt="">
                             @else
@@ -45,7 +45,7 @@
                                 @if($books->isEmpty()) 
                                     Oeps!
                                 @else
-                                    {{ $featuredBook[0]->name }}
+                                    {{ $featuredBook->name }}
                                 @endif
                             </h1>
                                 @if($books->isEmpty())
@@ -59,7 +59,7 @@
                                         @php
                                             echo(
                                                 nl2br(
-                                                    $featuredBook[0]->description
+                                                    $featuredBook->description
                                                 )
                                             );
                                         @endphp
@@ -67,7 +67,7 @@
 
                                     <div class="button-wrap my-3">
                                         <a class="button is-outlined is-primary">Lees de demo</a>
-                                        <a href="{{ $featuredBook[0]->link }}" class="button is-outlined is-primary">Koop het hier</a>
+                                        <a href="{{ $featuredBook->link }}" class="button is-outlined is-primary">Koop het hier</a>
                                     </div>
                                 @endif
                         </div>
@@ -82,16 +82,54 @@
 {{-- Book list --}}
 <div>
     @auth
-        <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>
+        <a href="
+            @if ($bookPost === null) 
+                {{ route('post.create', ['post' => 'alle boeken']) }} 
+            @else 
+                {{ route('post.edit', $bookPost->id) }} 
+            @endif
+        ">
+            <div class="edit">
+                <span class="edit-icon">
+                    <p>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost === null) Creëer @else Pas aan @endif</span>
+                    </p>
+                </span>
+            </div>
+        </a>
+
+        {{-- <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a> --}}
     @endauth
 
     <div class="container " id="section1">
         <section class="hero is-fullheight">
             <div class="hero-head">
                 <div class="section has-text-centered">
-                    <h1 class="title pt-5">Alle boeken</h1>
-                    <p>Op deze plek staat een collectie van alle boeken die ik heb geschreven. Kijk gerust even rond!</p>
+                    <h1 class="title">
+                        @if($bookPost === null) 
+                            Oeps!
+                        @else
+                            {{ $bookPost->name }}
+                        @endif
+                    </h1>
+                    <div class="text">
+                        @php
+                            if($bookPost === null) 
+                            {
+                                echo('Het lijkt erop dat er hier op dit moment nog geen content is');
+                            } 
+                            else 
+                            {
+                                echo(
+                                    nl2br(
+                                        $bookPost->description
+                                    )
+                                );
+                            }
+                        @endphp
+                    </div>
                 </div>
+                
             </div>
             <div class="hero-body px-0">
                 @if ($books->isEmpty())
@@ -103,19 +141,31 @@
                             <ul class="slider__slides glide__slides">
                                 @foreach($books as $book)
                                     <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
-                                        <img  class="image is-4x3 carousel-image" @if($book->files->count() > 0) src="{{$book->files->filter(function ($value, $key) {
-                                            return strpos($value['filename'],'cover') !== false;
-                                        })->first()['filepath']}}" @endif alt="">
+                                        <img  class="image is-4x3 carousel-image" 
+                                            @if($book->files->count() > 0) 
+                                                src="{{$book->files->filter(function ($value, $key)
+                                                {
+                                                    return strpos($value['filename'],'cover') !== false;
+                                                })->first()['filepath']}}" 
+                                            @endif 
+                                        alt="">
                                         <div class="overlay">
                                             <div class="img-text">
                                                 <h1 class="title">{{ $book->name }}</h1>
-                                                @php
-                                                    echo(
-                                                        nl2br(
-                                                            $book->description
-                                                        )
-                                                    )
-                                                @endphp
+                                                <div class="overlay-text">
+                                                    <p>
+                                                        @php
+                                                            echo(
+                                                                nl2br(
+                                                                    $book->description
+                                                                )
+                                                            )
+                                                        @endphp
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="button-wrap">
+                                                <a href="{{ $book->link }}" class="button is-outlined is-primary">Koop het hier</a>
                                             </div>
                                         </div>
                                     </li>
@@ -144,16 +194,16 @@
 <div>
     @auth
         <a href="
-            @if ($aboutPost->isEmpty()) 
+            @if ($aboutPost === null) 
                 {{ route('post.create', ['post' => 'over mij']) }} 
             @else 
-                {{ route('post.edit', $aboutPost[0]->id) }} 
+                {{ route('post.edit', $aboutPost->id) }} 
             @endif
         ">
             <div class="edit">
                 <span class="edit-icon">
                     <p>
-                        <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost->isEmpty()) Creëer @else Pas aan @endif</span>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost === null) Creëer @else Pas aan @endif</span>
                     </p>
                 </span>
             </div>
@@ -164,25 +214,30 @@
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="columns">
-                    <div class="level">
-                                            
-                        <div class="column">
-                            <img class=" section-image is-2by3 is-paddingless" src="" alt="">
+                    <div class="level">    
+                        <div class="column image-column">
+                            @if($postImage != null)
+                                <img class=" section-image is-2by3 is-paddingless" src="{{ $postImage->filepath }}" alt="">
+                            @else
+                                <div class="placeholder-image has-text-centered px-5 py-5">
+                                    <p>De afbeeldingen zijn nog niet toegevoegd</p>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="column is-1"></div>
 
                         <div class="column">
                             <h1 class="title">
-                                @if($aboutPost->isEmpty()) 
+                                @if($aboutPost === null) 
                                     Oeps!
                                 @else
-                                    {{ $aboutPost[0]->name }}
+                                    {{ $aboutPost->name }}
                                 @endif
                             </h1>
                             <div class="text">
                                 @php
-                                    if($aboutPost->isEmpty()) 
+                                    if($aboutPost === null) 
                                     {
                                         echo('Het lijkt erop dat er hier op dit moment nog geen content is');
                                     } 
@@ -190,7 +245,7 @@
                                     {
                                         echo(
                                             nl2br(
-                                                $aboutPost[0]->description
+                                                $aboutPost->description
                                             )
                                         );
                                     }
@@ -211,16 +266,16 @@
 <div>
     @auth
     <a href="
-        @if ($contactPost->isEmpty()) 
+        @if ($contactPost === null) 
             {{ route('post.create', ['post' => 'contact']) }} 
         @else 
-            {{ route('post.edit', $contactPost[0]->id) }} 
+            {{ route('post.edit', $contactPost->id) }} 
         @endif
     ">
         <div class="edit">
             <span class="edit-icon">
                 <p>
-                    <i class="far fa-edit"></i><span class="edit-text">@if ($contactPost->isEmpty()) Creëer @else Pas aan @endif</span>
+                    <i class="far fa-edit"></i><span class="edit-text">@if ($contactPost === null) Creëer @else Pas aan @endif</span>
                 </p>
             </span>
         </div>
@@ -248,15 +303,15 @@
 
                         <div class="column">
                             <h1 class="title">
-                                @if($contactPost->isEmpty()) 
+                                @if($contactPost === null) 
                                     Oeps!
                                 @else
-                                    {{ $contactPost[0]->name }}
+                                    {{ $contactPost->name }}
                                 @endif
                             </h1>
                             <div class="text">
                                 @php
-                                    if($contactPost->isEmpty()) 
+                                    if($contactPost === null) 
                                     {
                                         echo('Het lijkt erop dat er hier op dit moment nog geen content is');
                                     } 
@@ -264,7 +319,7 @@
                                     {
                                         echo(
                                             nl2br(
-                                                $contactPost[0]->description
+                                                $contactPost->description
                                             )
                                         );
                                     }
@@ -275,8 +330,12 @@
                 </div>
             </div>
             <div class="hero-foot">
-                <footer class="footer level">
-                    <div class="level-left"></div>
+                <footer class="footer has-text-centered level">
+                    <div class="level-left">
+                        @guest
+                            <p>Bent u de eigenaar? Log <a class="has-text-primary" href="{{ route('login') }}">hier</a>  dan in.</p>
+                        @endguest
+                    </div>
                     <div class="level-right">
                         <a href="#"><span class="icon"><i class="fab fa-facebook-f"></i></span></a>
                         <a href="#"><span class="icon"><i class="far fa-envelope"></i></i></span></a>

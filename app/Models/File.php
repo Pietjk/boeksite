@@ -9,12 +9,5 @@ class File extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['filename', 'filepath', 'book_id'];
-    
-    public function book()
-    {
-        return $this->where('filename', 'LIKE', '%cover%');
-
-        // ->where('book_id', '=', '$bookId')
-    }
+    protected $fillable = ['filename', 'filepath', 'book_id', 'type'];
 }

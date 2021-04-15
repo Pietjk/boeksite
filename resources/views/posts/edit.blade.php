@@ -38,5 +38,10 @@
                 </div>
             </form>
         </div>
+        @if ($post->order = 2)
+            <div class="box button-box">
+                <a href="{{ route('postfiles.create', $post) }}" class="button  is-primary is-outlined is-fullwidth">Voeg een foto toe</a>
+            </div>    
+        @endif
     </div>
 @endsection

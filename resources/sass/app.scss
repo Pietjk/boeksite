@@ -8,6 +8,8 @@
 @import './node_modules/bulma/bulma.sass';
 
 html {
+    --lh: 1.5rem;
+    line-height: var(--lh);
     scroll-behavior: smooth;
     background-color: $black;
 
@@ -92,10 +94,14 @@ body > div:nth-child(odd) {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.section-image {
-    width: 100%;
-    max-width: 420px;
-} 
+.image-column {
+    text-align: center;
+
+    .section-image {
+        width: 100%;
+        max-width: 520px;
+    } 
+}
 
 .placeholder-image {
     min-width: 300px;
@@ -347,6 +353,39 @@ body > div:nth-child(odd) {
     width: inherit;
     position: absolute;
     max-width: 520px;
+
+    .overlay-text {
+        --max-lines: 21;
+        position: relative;
+        max-height: calc(var(--lh) * var(--max-lines));
+        overflow: hidden;
+        padding-right: 0.5rem; /* space for ellipsis */
+        // margin: 10px;
+    }
+    // .overlay-text::before {
+    //     position: absolute;
+    //     content: "...";
+    //     // left: 0;
+    //     inset-block-end: 0; /* "bottom" */
+    //     inset-inline-end: 0; /* "right" */
+    // }
+    // .overlay-text::after {
+    //     position: absolute;
+    //     content: "";
+    //     inset-inline-end: 0; /* "right" */
+    //     width: 1rem;
+    //     height: 1rem;
+    //     background: white;
+    //   }
+    
+    .button-wrap {
+        position: absolute;
+        bottom: 1.5rem;
+        margin: 0;
+        left: 50%;
+        width: 20rem;
+        transform: translate(-50%, -50%);
+    }
 }
 
   .glide__slide--active:hover .overlay {

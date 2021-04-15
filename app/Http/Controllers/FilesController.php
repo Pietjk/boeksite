@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Book;
+use App\Models\Post;
 
 class FilesController extends Controller
 {
@@ -21,13 +22,23 @@ class FilesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new book resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Book $book, Request $request)
+    public function bookcreate(Book $book, Request $request)
     {
-        return view('files.create', compact('book'));
+        return view('files.bookcreate', compact('book'));
+    }
+
+    /**
+     * Show the form for creating a new post resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function postcreate(Post $post, Request $request)
+    {
+        return view('files.postcreate', compact('post'));
     }
 
     /**
@@ -36,15 +47,16 @@ class FilesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Book $book)
+    public function bookstore(Request $request, Book $book, Post $post)
     {
-        if ($request->hasFile('bookCover')) {
+        if ($request->hasFile('bookCover')) 
+        {
             if ($request->file('bookCover')->isValid()) {
                 $validated = $request->validateWithBag('form-feedback', [
                     'bookCover' => 'image', 'max:2048'
                 ]);
 
-                $name = strtolower(str_replace(' ', '', $book->name . 'cover'));
+                $name = strtolower(str_replace(' ', '', $book->id . 'cover'));
                 $request->bookCover->storeAs('public', $name.".png");
                 $url = Storage::url($name.".png");
                 
@@ -54,6 +66,7 @@ class FilesController extends Controller
                     'filename' => $name,
                     'filepath' => $url,
                     'book_id' => $book->id,
+                    'type' => 'cover'
                 ]);
             }
         }
@@ -65,7 +78,7 @@ class FilesController extends Controller
                     'bookHeader' => 'image', 'max:2048'
                 ]);
 
-                $name = strtolower(str_replace(' ', '', $book->name . 'header'));
+                $name = strtolower(str_replace(' ', '', $book->id . 'header'));
                 $request->bookHeader->storeAs('public', $name.".png");
                 $url = Storage::url($name.".png");
                 
@@ -75,6 +88,38 @@ class FilesController extends Controller
                     'filename' => $name,
                     'filepath' => $url,
                     'book_id' => $book->id,
+                    'type' => 'header'
+                ]);
+            }
+        }
+        
+        return back();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function poststore(Request $request, Post $post)
+    {
+        if ($request->hasFile('post')) 
+        {
+            if ($request->file('post')->isValid()) {
+                $validated = $request->validateWithBag('form-feedback', [
+                    'post' => 'image', 'max:2048'
+                ]);
+                $name = strtolower(str_replace(' ', '', $post->id . 'post'));
+                $request->post->storeAs('public', $name.".png");
+                $url = Storage::url($name.".png");
+                
+                File::whereFilename($name)->delete();
+
+                $file = File::create([
+                    'filename' => $name,
+                    'filepath' => $url,
+                    'type' => 'post' 
                 ]);
             }
         }

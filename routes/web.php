@@ -18,10 +18,13 @@ Route::get('/', [App\Http\Controllers\ContentController::class, 'index'])->name(
 Route::middleware('auth')->group(function () {
     // Post routing
     Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'destroy', 'index']);
-    // File routing
+    // File book routing
     // Route::resource('file', App\Http\Controllers\FilesController::class);
-    Route::get('/book/{book}/file/create', [App\Http\Controllers\FilesController::class, 'create'])->name('files.create');
-    Route::post('/book/{book}/file/store', [App\Http\Controllers\FilesController::class, 'store'])->name('files.store');
+    Route::get('/book/{book}/file/create', [App\Http\Controllers\FilesController::class, 'bookcreate'])->name('files.create');
+    Route::post('/book/{book}/file/store', [App\Http\Controllers\FilesController::class, 'bookstore'])->name('files.store');
+    // File post routing
+    Route::get('/post/{post}/file/create', [App\Http\Controllers\FilesController::class, 'postcreate'])->name('postfiles.create');
+    Route::post('/post/{post}/file/store', [App\Http\Controllers\FilesController::class, 'poststore'])->name('postfiles.store');
     // Book routing
     Route::resource('book', App\Http\Controllers\BooksController::class);
     Route::post('/book/{book}/feature', [App\Http\Controllers\BooksController::class, 'feature'])->name('book.feature');
