@@ -337,8 +337,8 @@
                         @endguest
                     </div>
                     <div class="level-right">
-                        <a href="#"><span class="icon"><i class="fab fa-facebook-f"></i></span></a>
-                        <a href="#"><span class="icon"><i class="far fa-envelope"></i></i></span></a>
+                        <a href="https://www.facebook.com/rkorfmaker"><span class="icon"><i class="fab fa-facebook-f"></i></span></a>
+                        {{-- <a href="#"><span class="icon"><i class="far fa-envelope"></i></i></span></a> --}}
                     </div>
                 </footer>
             </div>
