@@ -110,7 +110,7 @@ class FilesController extends Controller
                 $validated = $request->validateWithBag('form-feedback', [
                     'post' => 'image', 'max:2048'
                 ]);
-                $name = strtolower(str_replace(' ', '', $post->id . 'post'));
+                $name = 'post';
                 $request->post->storeAs('public', $name.".png");
                 $url = Storage::url($name.".png");
                 

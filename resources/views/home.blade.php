@@ -33,7 +33,7 @@
                                 <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover[0]->filepath) }}" alt="">
                             @else
                                 <div class="placeholder-image has-text-centered px-5 py-5">
-                                    <p>De afbeeldingen zijn nog niet toegevoegd</p>
+                                    <p>De afbeelding(en) zijn nog niet toegevoegd</p>
                                 </div>
                             @endif
                         </div>
@@ -92,7 +92,7 @@
             <div class="edit">
                 <span class="edit-icon">
                     <p>
-                        <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost === null) Creëer @else Pas aan @endif</span>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($bookPost === null) Creëer @else Pas aan @endif</span>
                     </p>
                 </span>
             </div>
@@ -220,7 +220,7 @@
                                 <img class=" section-image is-2by3 is-paddingless" src="{{ $postImage->filepath }}" alt="">
                             @else
                                 <div class="placeholder-image has-text-centered px-5 py-5">
-                                    <p>De afbeeldingen zijn nog niet toegevoegd</p>
+                                    <p>De afbeelding(en) zijn nog niet toegevoegd</p>
                                 </div>
                             @endif
                         </div>
