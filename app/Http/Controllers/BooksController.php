@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BooksController extends Controller
 {
@@ -136,19 +138,36 @@ class BooksController extends Controller
      */
     public function destroy(Book $book)
     {
+        // Change the current featured book
         if ($book->featured)
         {
             $newFeatured = Book::where('id', '!=', $book->id)->first();
-
+            
             if ($newFeatured != null) {
                 $newFeatured->update(['featured' => true]);
             }
         }
 
+        // Delete the books files from storage
+        $files = File::whereBookId($book->id);
+
+        foreach ($files->pluck('filename') as $filename) {
+            Storage::disk('public')->delete($filename.'.png');
+        }
+        
+        // Delete the files and book from the database
+        $files->delete();
         $book->delete();
         return back();
     }
 
+    /**
+     * Feature the specified book on the frontpage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Book  $book
+     * @return \Illuminate\Http\Response
+     */
     public function feature(Request $request, Book $book)
     {
         Book::whereFeatured(true)->update(['featured' => false]);
@@ -156,6 +175,11 @@ class BooksController extends Controller
         return back();
     }
 
+    /**
+     * Show the page for choosing between adding images and edditing the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function choice(Book $book)
     {
         return view('books.choice', compact('book'));
