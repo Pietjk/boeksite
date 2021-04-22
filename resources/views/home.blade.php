@@ -66,7 +66,7 @@
                                     </div>
 
                                     <div class="button-wrap my-3">
-                                        <a class="button is-outlined is-primary">Lees de demo</a>
+                                        <a href="{{ route('demo') }}" class="button is-outlined is-primary">Lees de demo</a>
                                         <a href="{{ $featuredBook->link }}" class="button is-outlined is-primary">Koop het hier</a>
                                     </div>
                                 @endif
@@ -297,7 +297,7 @@
                                 <button class="button is-outlined is-primary is-fullwidth mt-4">Verstuur uw bericht</button>
                                 <div class="form-hider">
                                     <h1 class="title">Het formulier is nog onder constructie.</h1>
-                                    <p>Wilt u toch graag een mail sturen? klik dan <a class="has-text-primary" href="mailto:rkorfmaker@gmail.com">hier.</a></p>
+                                    <p>Wilt u toch graag een mail sturen? klik dan <a class="has-text-primary" href="mailto:ricardsrequiem@gmail.com">hier</a>.</p>
                                 </div>
                             </form>
                         </div>
@@ -338,7 +338,7 @@
                     </div>
                     <div class="level-right">
                         <a href="https://www.facebook.com/rkorfmaker"><span class="icon"><i class="fab fa-facebook-f"></i></span></a>
-                        <a href="mailto:rkorfmaker@gmail.com"><span class="icon"><i class="far fa-envelope"></i></i></span></a>
+                        <a href="mailto:ricardsrequiem@gmail.com"><span class="icon"><i class="far fa-envelope"></i></i></span></a>
                     </div>
                 </footer>
             </div>

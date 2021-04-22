@@ -90,6 +90,13 @@ body > div:nth-child(odd) {
     }
 }
 
+.seection, .is-gradient {
+    background: linear-gradient(55deg, rgba(18,18,18,1) 5%, rgba(253,173,0,1) 100%);  
+
+    p {
+        color: $white;
+    }
+}
 .image {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
