@@ -97,8 +97,6 @@
                 </span>
             </div>
         </a>
-
-        {{-- <a href="#"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a> --}}
     @endauth
 
     <div class="container " id="section1">
@@ -288,7 +286,7 @@
                 <div class="columns">
                     <div class="level">
                                             
-                        <div class="column">
+                        <div class="column mail-container">
                             <form action="">
                                 <label for="text" class="label is-full-width">Naam</label>
                                     <input type="text" class="input">
@@ -297,7 +295,12 @@
                                 <label for="text" class="label mt-2">Uw bericht</label>
                                     <textarea class="textarea" name="" id="" cols="30" rows="5"></textarea>
                                 <button class="button is-outlined is-primary is-fullwidth mt-4">Verstuur uw bericht</button>
-                            </form>                        </div>
+                                <div class="form-hider">
+                                    <h1 class="title">Het formulier is nog onder constructie.</h1>
+                                    <p>Wilt u toch graag een mail sturen? klik dan <a class="has-text-primary" href="mailto:rkorfmaker@gmail.com">hier.</a></p>
+                                </div>
+                            </form>
+                        </div>
 
                         <div class="column is-1"></div>
 
@@ -332,13 +335,10 @@
             <div class="hero-foot">
                 <footer class="footer has-text-centered level">
                     <div class="level-left">
-                        @guest
-                            <p>Bent u de eigenaar? Log <a class="has-text-primary" href="{{ route('login') }}">hier</a>  dan in.</p>
-                        @endguest
                     </div>
                     <div class="level-right">
                         <a href="https://www.facebook.com/rkorfmaker"><span class="icon"><i class="fab fa-facebook-f"></i></span></a>
-                        {{-- <a href="#"><span class="icon"><i class="far fa-envelope"></i></i></span></a> --}}
+                        <a href="mailto:rkorfmaker@gmail.com"><span class="icon"><i class="far fa-envelope"></i></i></span></a>
                     </div>
                 </footer>
             </div>
