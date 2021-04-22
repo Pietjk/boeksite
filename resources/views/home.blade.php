@@ -295,10 +295,10 @@
                                 <label for="text" class="label mt-2">Uw bericht</label>
                                     <textarea class="textarea" name="" id="" cols="30" rows="5"></textarea>
                                 <button class="button is-outlined is-primary is-fullwidth mt-4">Verstuur uw bericht</button>
-                                <div class="form-hider">
+                                {{-- <div class="form-hider">
                                     <h1 class="title">Het formulier is nog onder constructie.</h1>
                                     <p>Wilt u toch graag een mail sturen? klik dan <a class="has-text-primary" href="mailto:rkorfmaker@gmail.com">hier.</a></p>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
 
