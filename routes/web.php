@@ -13,22 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\ContentController::class, 'index'])->name('home');
+// Home page
+Route::get('/', [App\Http\Controllers\ContentController::class, 'home'])->name('home');
+
+// Demo page
+Route::get('/demo', [App\Http\Controllers\ContentController::class, 'demo'])->name('demo');
 
 Route::middleware('auth')->group(function () {
     // Post routing
     Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'destroy', 'index']);
-    // File book routing
-    // Route::resource('file', App\Http\Controllers\FilesController::class);
-    Route::get('/book/{book}/file/create', [App\Http\Controllers\FilesController::class, 'bookcreate'])->name('files.create');
-    Route::post('/book/{book}/file/store', [App\Http\Controllers\FilesController::class, 'bookstore'])->name('files.store');
+
     // File post routing
     Route::get('/post/{post}/file/create', [App\Http\Controllers\FilesController::class, 'postcreate'])->name('postfiles.create');
     Route::post('/post/{post}/file/store', [App\Http\Controllers\FilesController::class, 'poststore'])->name('postfiles.store');
+
     // Book routing
     Route::resource('book', App\Http\Controllers\BooksController::class);
     Route::post('/book/{book}/feature', [App\Http\Controllers\BooksController::class, 'feature'])->name('book.feature');
     route::get('/book/{book}/choice', [App\Http\Controllers\BooksController::class, 'choice'] )->name('book.choice');
+
+    // File book routing
+    Route::get('/book/{book}/file/create', [App\Http\Controllers\FilesController::class, 'bookcreate'])->name('files.create');
+    Route::post('/book/{book}/file/store', [App\Http\Controllers\FilesController::class, 'bookstore'])->name('files.store');
 });
 
 Auth::routes(['register' => false]);

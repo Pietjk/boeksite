@@ -66,7 +66,7 @@
                                     </div>
 
                                     <div class="button-wrap my-3">
-                                        <a class="button is-outlined is-primary">Lees de demo</a>
+                                        <a href="{{ route('demo') }}" class="button is-outlined is-primary">Lees de demo</a>
                                         <a href="{{ $featuredBook->link }}" class="button is-outlined is-primary">Koop het hier</a>
                                     </div>
                                 @endif

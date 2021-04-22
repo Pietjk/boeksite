@@ -11,24 +11,14 @@ use App\Models\Book;
 
 class ContentController extends Controller
 {
-    public function index(Post $post, Book $book, File $file)
+    public function home(Post $post, Book $book, File $file)
     {
         // All post variables
         $bookPost = $post->whereOrder(1)->first();
         $aboutPost = $post->whereOrder(2)->first();
         $contactPost = $post->whereOrder(3)->first();
-
-        // if ($aboutPost  != null)
-        // {
-        //     $post
-        // }
-        // else
-        // {
-        //     $postImage = File::All();
-        // }
         
         $postImage = File::where('type', '=', 'post')->first();
-        // dd($postImage);
 
         // All book variables
         $books = $book->all();
@@ -48,5 +38,10 @@ class ContentController extends Controller
         $featuredCover = File::where('book_id', '=', $bookId)->where('type', '=', 'cover')->get();
 
         return view('home', compact('bookPost', 'aboutPost', 'contactPost', 'postImage', 'books', 'featuredBook', 'featuredHeader', 'featuredCover'));
+    }
+
+    public function demo()
+    {
+        return view('demo.index');
     }
 }
