@@ -64,10 +64,13 @@
                                             );
                                         @endphp
                                     </div>
-
                                     <div class="button-wrap my-3">
-                                        <a href="{{ route('demo') }}" class="button is-outlined is-primary">Lees de demo</a>
-                                        <a href="{{ $featuredBook->link }}" class="button is-outlined is-primary">Koop het hier</a>
+                                        @if (file_exists('storage/book' . $featuredBook->id . '.pdf'))
+                                            <a href="{{ asset('storage/book' . $featuredBook->id . '.pdf') }}" target="_blank" class="button is-outlined is-primary">Lees de demo</a>
+                                            <a href="{{ $featuredBook->link }}" class="button is-outlined is-primary">Bekijk meer</a>
+                                        @else
+                                            <a href="{{ $featuredBook->link }}" class="button is-outlined is-primary wide">Bekijk meer</a>
+                                        @endif
                                     </div>
                                 @endif
                         </div>
@@ -86,7 +89,7 @@
             @if ($bookPost === null)
                 {{ route('post.create', ['post' => 'alle boeken']) }}
             @else
-                {{ route('post.edit', $bookPost->id) }}
+                {{ route('post.edit', $bookPost) }}
             @endif
         ">
             <div class="edit">
@@ -162,8 +165,13 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="button-wrap">
-                                                <a href="{{ $book->link }}" class="button is-outlined is-primary">Koop het hier</a>
+                                            <div class="button-wrap my-3">
+                                                @if (file_exists('storage/book' . $book->id . '.pdf'))
+                                                    <a href="{{ asset('storage/book' . $book->id . '.pdf')  }}" target="_blank" class="button is-outlined is-primary">Lees de demo</a>
+                                                    <a href="{{ $book->link }}" class="button is-outlined is-primary">Bekijk meer</a>
+                                                @else
+                                                    <a href="{{ $book->link }}" class="button is-outlined is-primary wide">Bekijk meer</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </li>
@@ -195,7 +203,7 @@
             @if ($aboutPost === null)
                 {{ route('post.create', ['post' => 'over mij']) }}
             @else
-                {{ route('post.edit', $aboutPost->id) }}
+                {{ route('post.edit', $aboutPost) }}
             @endif
         ">
             <div class="edit">
@@ -267,7 +275,7 @@
         @if ($contactPost === null)
             {{ route('post.create', ['post' => 'contact']) }}
         @else
-            {{ route('post.edit', $contactPost->id) }}
+            {{ route('post.edit', $contactPost) }}
         @endif
     ">
         <div class="edit">

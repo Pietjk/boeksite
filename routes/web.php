@@ -20,7 +20,7 @@ Route::get('/', [App\Http\Controllers\ContentController::class, 'home'])->name('
 Route::post('/send', [App\Http\Controllers\MailController::class, 'send'])->name('send');
 
 // Demo page
-Route::get('/demo', [App\Http\Controllers\ContentController::class, 'demo'])->name('demo');
+// Route::get('/demo/{book}', [App\Http\Controllers\FilesController::class, 'pdfShow'])->name('demo');
 
 Route::middleware('auth')->group(function () {
     // Post routing
@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     // File book routing
     Route::get('/book/{book}/file/create', [App\Http\Controllers\FilesController::class, 'bookcreate'])->name('files.create');
     Route::post('/book/{book}/file/store', [App\Http\Controllers\FilesController::class, 'bookstore'])->name('files.store');
+    Route::post('/book/{book}/pdf/store', [App\Http\Controllers\FilesController::class, 'pdfstore'])->name('pdfs.store');
 });
 
 Auth::routes(['register' => false]);
