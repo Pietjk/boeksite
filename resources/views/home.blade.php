@@ -7,10 +7,10 @@
 <div>
     @auth
         <a href="
-            @if ($books->isEmpty()) 
-                {{ route('book.create') }} 
-            @else 
-                {{ route('book.index') }} 
+            @if ($books->isEmpty())
+                {{ route('book.create') }}
+            @else
+                {{ route('book.index') }}
             @endif
         ">
             <div class="edit">
@@ -42,7 +42,7 @@
 
                         <div class="column">
                             <h1 class="title">
-                                @if($books->isEmpty()) 
+                                @if($books->isEmpty())
                                     Oeps!
                                 @else
                                     {{ $featuredBook->name }}
@@ -50,7 +50,7 @@
                             </h1>
                                 @if($books->isEmpty())
                                     <div class="text">
-                                        @php 
+                                        @php
                                             echo('Het lijkt erop dat er hier op dit moment nog geen content is');
                                         @endphp
                                     </div>
@@ -83,10 +83,10 @@
 <div>
     @auth
         <a href="
-            @if ($bookPost === null) 
-                {{ route('post.create', ['post' => 'alle boeken']) }} 
-            @else 
-                {{ route('post.edit', $bookPost->id) }} 
+            @if ($bookPost === null)
+                {{ route('post.create', ['post' => 'alle boeken']) }}
+            @else
+                {{ route('post.edit', $bookPost->id) }}
             @endif
         ">
             <div class="edit">
@@ -104,7 +104,7 @@
             <div class="hero-head">
                 <div class="section has-text-centered">
                     <h1 class="title">
-                        @if($bookPost === null) 
+                        @if($bookPost === null)
                             Oeps!
                         @else
                             {{ $bookPost->name }}
@@ -112,11 +112,11 @@
                     </h1>
                     <div class="text">
                         @php
-                            if($bookPost === null) 
+                            if($bookPost === null)
                             {
                                 echo('Het lijkt erop dat er hier op dit moment nog geen content is');
-                            } 
-                            else 
+                            }
+                            else
                             {
                                 echo(
                                     nl2br(
@@ -127,7 +127,7 @@
                         @endphp
                     </div>
                 </div>
-                
+
             </div>
             <div class="hero-body px-0">
                 @if ($books->isEmpty())
@@ -139,13 +139,13 @@
                             <ul class="slider__slides glide__slides">
                                 @foreach($books as $book)
                                     <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
-                                        <img  class="image is-4x3 carousel-image" 
-                                            @if($book->files->count() > 0) 
+                                        <img  class="image is-4x3 carousel-image"
+                                            @if($book->files->count() > 0)
                                                 src="{{$book->files->filter(function ($value, $key)
                                                 {
                                                     return strpos($value['filename'],'cover') !== false;
-                                                })->first()['filepath']}}" 
-                                            @endif 
+                                                })->first()['filepath']}}"
+                                            @endif
                                         alt="">
                                         <div class="overlay">
                                             <div class="img-text">
@@ -178,11 +178,11 @@
                                     <span class="icon"><i class="fas fa-chevron-right"></i></span>
                                 </button>
                             </div>
-                        </div>                      
+                        </div>
                     </div>
                 @endif
             <div class="hero-foot">
-                
+
             </div>
         </section>
     </div>
@@ -192,10 +192,10 @@
 <div>
     @auth
         <a href="
-            @if ($aboutPost === null) 
-                {{ route('post.create', ['post' => 'over mij']) }} 
-            @else 
-                {{ route('post.edit', $aboutPost->id) }} 
+            @if ($aboutPost === null)
+                {{ route('post.create', ['post' => 'over mij']) }}
+            @else
+                {{ route('post.edit', $aboutPost->id) }}
             @endif
         ">
             <div class="edit">
@@ -212,7 +212,7 @@
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="columns">
-                    <div class="level">    
+                    <div class="level">
                         <div class="column image-column">
                             @if($postImage != null)
                                 <img class=" section-image is-2by3 is-paddingless" src="{{ $postImage->filepath }}" alt="">
@@ -227,7 +227,7 @@
 
                         <div class="column">
                             <h1 class="title">
-                                @if($aboutPost === null) 
+                                @if($aboutPost === null)
                                     Oeps!
                                 @else
                                     {{ $aboutPost->name }}
@@ -235,11 +235,11 @@
                             </h1>
                             <div class="text">
                                 @php
-                                    if($aboutPost === null) 
+                                    if($aboutPost === null)
                                     {
                                         echo('Het lijkt erop dat er hier op dit moment nog geen content is');
-                                    } 
-                                    else 
+                                    }
+                                    else
                                     {
                                         echo(
                                             nl2br(
@@ -254,7 +254,7 @@
                 </div>
             </div>
             <div class="hero-foot">
-                
+
             </div>
         </section>
     </div>
@@ -264,10 +264,10 @@
 <div>
     @auth
     <a href="
-        @if ($contactPost === null) 
-            {{ route('post.create', ['post' => 'contact']) }} 
-        @else 
-            {{ route('post.edit', $contactPost->id) }} 
+        @if ($contactPost === null)
+            {{ route('post.create', ['post' => 'contact']) }}
+        @else
+            {{ route('post.edit', $contactPost->id) }}
         @endif
     ">
         <div class="edit">
@@ -279,26 +279,28 @@
         </div>
     </a>
     @endauth
-    
+
     <div class="container" id="section1">
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="columns">
                     <div class="level">
-                                            
+
                         <div class="column mail-container">
-                            <form action="">
+                            @include('components._error', ['bag' => 'form-feedback'])
+                            @include('components._notification')
+
+                            <form action="{{ route('send') }}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <label for="text" class="label is-full-width">Naam</label>
-                                    <input type="text" class="input">
-                                <label for="text" class="label mt-2">Email</label>
-                                    <input type="text" class="input">
+                                    <input name="name" type="text" class="input" placeholder="Uw naam">
+                                <label for="text" class="label mt-2">E-mail adres</label>
+                                    <input name="email" type="text" class="input" placeholder="Uw e-mail adres">
+                                <label for="text" class="label mt-2">Onderwerp</label>
+                                    <input name="subject" type="text" class="input" placeholder="Het onderwerp">
                                 <label for="text" class="label mt-2">Uw bericht</label>
-                                    <textarea class="textarea" name="" id="" cols="30" rows="5"></textarea>
+                                    <textarea name="text" class="textarea" name="" id="" cols="30" rows="5"  placeholder="Uw bericht"></textarea>
                                 <button class="button is-outlined is-primary is-fullwidth mt-4">Verstuur uw bericht</button>
-                                <div class="form-hider">
-                                    <h1 class="title">Het formulier is nog onder constructie.</h1>
-                                    <p>Wilt u toch graag een mail sturen? klik dan <a class="has-text-primary" href="mailto:ricardsrequiem@gmail.com">hier</a>.</p>
-                                </div>
                             </form>
                         </div>
 
@@ -306,7 +308,7 @@
 
                         <div class="column">
                             <h1 class="title">
-                                @if($contactPost === null) 
+                                @if($contactPost === null)
                                     Oeps!
                                 @else
                                     {{ $contactPost->name }}
@@ -314,11 +316,11 @@
                             </h1>
                             <div class="text">
                                 @php
-                                    if($contactPost === null) 
+                                    if($contactPost === null)
                                     {
                                         echo('Het lijkt erop dat er hier op dit moment nog geen content is');
-                                    } 
-                                    else 
+                                    }
+                                    else
                                     {
                                         echo(
                                             nl2br(
