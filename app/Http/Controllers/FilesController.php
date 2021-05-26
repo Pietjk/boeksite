@@ -49,7 +49,7 @@ class FilesController extends Controller
      */
     public function bookstore(Request $request, Book $book, Post $post)
     {
-        if ($request->hasFile('bookCover')) 
+        if ($request->hasFile('bookCover'))
         {
             if ($request->file('bookCover')->isValid()) {
                 $validated = $request->validateWithBag('form-feedback', [
@@ -59,7 +59,7 @@ class FilesController extends Controller
                 $name = strtolower(str_replace(' ', '', $book->id . 'cover'));
                 $request->bookCover->storeAs('public', $name.".png");
                 $url = Storage::url($name.".png");
-                
+
                 File::whereFilename($name)->delete();
 
                 $file = File::create([
@@ -71,7 +71,7 @@ class FilesController extends Controller
             }
         }
 
-        if ($request->hasFile('bookHeader')) 
+        if ($request->hasFile('bookHeader'))
         {
             if ($request->file('bookHeader')->isValid()) {
                 $validated = $request->validateWithBag('form-feedback', [
@@ -81,7 +81,7 @@ class FilesController extends Controller
                 $name = strtolower(str_replace(' ', '', $book->id . 'header'));
                 $request->bookHeader->storeAs('public', $name.".png");
                 $url = Storage::url($name.".png");
-                
+
                 File::whereFilename($name)->delete();
 
                 $file = File::create([
@@ -92,7 +92,7 @@ class FilesController extends Controller
                 ]);
             }
         }
-        
+
         return back();
     }
 
@@ -104,7 +104,7 @@ class FilesController extends Controller
      */
     public function poststore(Request $request, Post $post)
     {
-        if ($request->hasFile('post')) 
+        if ($request->hasFile('post'))
         {
             if ($request->file('post')->isValid()) {
                 $validated = $request->validateWithBag('form-feedback', [
@@ -113,17 +113,48 @@ class FilesController extends Controller
                 $name = 'post';
                 $request->post->storeAs('public', $name.".png");
                 $url = Storage::url($name.".png");
-                
+
                 File::whereFilename($name)->delete();
 
                 $file = File::create([
                     'filename' => $name,
                     'filepath' => $url,
-                    'type' => 'post' 
+                    'type' => 'post'
                 ]);
             }
         }
-        
+
+        return back();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function pdfstore(Request $request, Book $book)
+    {
+        if ($request->hasFile('bookPdf'))
+        {
+            if ($request->file('bookPdf')->isValid()) {
+                $validated = $request->validateWithBag('form-feedback', [
+                    'bookPdf' => 'required', 'mimes:pdf', 'file', 'max:2048'
+                ]);
+                $name = strtolower(str_replace(' ', '', 'book' . $book->id));
+                $request->bookPdf->storeAs('public', $name.'.'.$request->bookPdf->extension());
+                $url = Storage::url($name.'.'.$request->bookPdf->extension());
+
+                File::whereFilename($name)->delete();
+
+                $file = File::create([
+                    'filename' => $name,
+                    'filepath' => $url,
+                    'type' => 'pdf'
+                ]);
+            }
+        }
+
         return back();
     }
 

@@ -25,7 +25,7 @@ body > div:nth-child(even) {
 
     .edit {
         background-color: $primary;
-        
+
         .edit-icon{
 
             color: $grey;
@@ -54,8 +54,8 @@ body > div:nth-child(odd) {
     }
 }
 
-.has-bg-img { 
-    background: center left; 
+.has-bg-img {
+    background: center left;
     background-size:cover;
 
     .notification {
@@ -73,7 +73,7 @@ body > div:nth-child(odd) {
         }
         .subtitle {
             color: $white;
-        } 
+        }
     }
 
       .foot {
@@ -82,16 +82,16 @@ body > div:nth-child(odd) {
         .icon {
             font-size: 50px;
             color: $yellow;
-        } 
+        }
         .icon:hover {
             color: $grey;
             cursor: pointer;
-        } 
+        }
     }
 }
 
 .seection, .is-gradient {
-    background: linear-gradient(55deg, rgba(18,18,18,1) 5%, rgba(253,173,0,1) 100%);  
+    background: linear-gradient(55deg, rgba(18,18,18,1) 5%, rgba(253,173,0,1) 100%);
 
     p {
         color: $white;
@@ -107,7 +107,7 @@ body > div:nth-child(odd) {
     .section-image {
         width: 100%;
         max-width: 520px;
-    } 
+    }
 }
 
 .placeholder-image {
@@ -115,7 +115,7 @@ body > div:nth-child(odd) {
     max-width: 420px;
     background-color: $hovergrey;
     height: 520px;
-} 
+}
 
 .button-wrap {
     text-align: center;
@@ -123,6 +123,10 @@ body > div:nth-child(odd) {
     .button {
         width: 48%;
         margin-bottom: 5px;
+    }
+
+    .wide {
+        width: 100%;
     }
 }
 
@@ -134,9 +138,9 @@ body > div:nth-child(odd) {
     width: 100%;
     top: 0;
     position: absolute;
-    
+
     text-align: center;
-    
+
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -191,15 +195,15 @@ body > div:nth-child(odd) {
     .edit-icon {
         color: $grey;
         cursor: pointer;
-    } 
+    }
 }
 
 .login-container {
-    margin: 0; 
-    position: absolute; 
-    top: 50%; left: 50%; 
-    -ms-transform: translate(-50%, -50%); 
-    transform: translate(-50%, -50%); 
+    margin: 0;
+    position: absolute;
+    top: 50%; left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 100%;
 
     .columns {
@@ -213,7 +217,7 @@ body > div:nth-child(odd) {
 
         .panel-block {
             background-color: $grey;
-            
+
             .label {
                 color: $lightgrey;
             }
@@ -254,7 +258,7 @@ body > div:nth-child(odd) {
 
     table {
         width: 100%;
-        
+
         .table-checkbox {
             text-align: center;
         }
@@ -301,7 +305,7 @@ body > div:nth-child(odd) {
         font-size: 20px;
         margin-right: 15px;
     }
-    
+
     .icon:hover {
         color: $primary;
     }
@@ -317,7 +321,7 @@ body > div:nth-child(odd) {
     text-align: center;
     overflow: hidden;
     max-height: 720px;
-    height: 100%; 
+    height: 100%;
   }
 
   .glide {
@@ -373,7 +377,7 @@ body > div:nth-child(odd) {
     img {
         width: 100%;
         height: inherit;
-    } 
+    }
 }
 
 .overlay {
@@ -396,7 +400,7 @@ body > div:nth-child(odd) {
         overflow: hidden;
         padding-right: 0.5rem; /* space for ellipsis */
     }
-    
+
     .button-wrap {
         position: absolute;
         bottom: 1.5rem;
@@ -408,9 +412,10 @@ body > div:nth-child(odd) {
 }
 
 .glide__slide--active:hover .overlay {
-opacity: 0.9;
+    opacity: 1;
+    background-color: $seeTroughBlack;
 }
-  
+
 .img-text {
     width: 100%;
     padding: 20px;
