@@ -22,9 +22,9 @@ class MailController extends Controller
 
         ), function($message) use ($validated){
 
-            $message->from($validated['email']);
+            $message->from($validated['email'], $validated['name']);
 
-            $message->to('pkorfmaker@gmail.com', 'Piet')->subject($validated['subject']);
+            $message->to('ricardsrequiem@gmail.com', 'Ruben')->subject($validated['subject']);
         });
 
         session()->flash('success', 'Uw mail is verstuurd!');
