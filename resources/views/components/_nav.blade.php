@@ -1,19 +1,22 @@
 <section class="hero is-fullheight has-bg-img" @if(isset($featuredHeader[0])) style="background-image:url('{{ asset($featuredHeader[0]->filepath) }}')" @endif>
-    @auth
-    <div class="hero-head has-text-centered mb-5">
-        <div class="notification is-primary">
-            <h1 class="is-3">Je bent ingelogd!</h1>
+    <div class="hero-head mb-5">
+        @include('components._error', ['bag' => 'form-feedback'])
+        @include('components._notification')
 
-            <h1 class="is-3">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    Log uit
-                </a>
-            </h1>
-        </div>
-        @if(isset($featuredBook))<a href="{{ route('files.create', $featuredBook) }}"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>@endif
+        @auth
+            <div class="notification has-text-centered is-primary">
+                <h1 class="is-3">Je bent ingelogd!</h1>
+
+                <h1 class="is-3">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        Log uit
+                    </a>
+                </h1>
+            </div>
+            @if(isset($featuredBook))<a href="{{ route('files.create', $featuredBook) }}"><div class="edit"><span class="edit-icon"><p><i class="far fa-edit"></i><span class="edit-text"> Pas aan</span></p></span></div></a>@endif
+        @endauth
     </div>
-    @endauth
     <div class="hero-body">
         <div class="container body">
             @if(isset($featuredBook))<h1 class="title">{{ $featuredBook->name }}</h1>@endif

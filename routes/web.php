@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 // Home page
 Route::get('/', [App\Http\Controllers\ContentController::class, 'home'])->name('home');
 
+// Mail route
+Route::post('/send', [App\Http\Controllers\MailController::class, 'send'])->name('send');
+
 // Demo page
 Route::get('/demo', [App\Http\Controllers\ContentController::class, 'demo'])->name('demo');
 
@@ -38,5 +41,3 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes(['register' => false]);
-
-// Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
