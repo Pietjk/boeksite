@@ -34,10 +34,10 @@ class PostsController extends Controller
 
         unset($validated['type']);
 
-        if ($request->type === "alle boeken") 
+        if ($request->type === "alle boeken")
         {
             $order = 1;
-        } 
+        }
         elseif ($request->type === "over mij")
         {
             $order = 2;
@@ -45,6 +45,14 @@ class PostsController extends Controller
         elseif ($request->type === "contact")
         {
             $order = 3;
+        }
+        elseif ($request->type === "blog")
+        {
+            $order = 4;
+        }
+        elseif ($request->type === "blog text")
+        {
+            $order = 5;
         }
 
         Post::create($validated + ['order' => $order]);
@@ -59,12 +67,23 @@ class PostsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(post $post)
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Post $post)
     {
         return view('posts.edit', compact('post'));
     }
@@ -73,10 +92,10 @@ class PostsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request, Post $post)
     {
         $validated = $request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
@@ -86,5 +105,17 @@ class PostsController extends Controller
         $post->update($validated);
 
         return redirect('/');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Book  $book
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return back();
     }
 }

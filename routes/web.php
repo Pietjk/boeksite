@@ -19,12 +19,12 @@ Route::get('/', [App\Http\Controllers\ContentController::class, 'home'])->name('
 // Mail route
 Route::post('/send', [App\Http\Controllers\MailController::class, 'send'])->name('send');
 
-// Demo page
-// Route::get('/demo/{book}', [App\Http\Controllers\FilesController::class, 'pdfShow'])->name('demo');
+// Blog page
+Route::get('/blog/{post}', [App\Http\Controllers\PostsController::class, 'show'])->name('blog.show');
 
 Route::middleware('auth')->group(function () {
     // Post routing
-    Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'destroy', 'index']);
+    Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'index']);
 
     // File post routing
     Route::get('/post/{post}/file/create', [App\Http\Controllers\FilesController::class, 'postcreate'])->name('postfiles.create');

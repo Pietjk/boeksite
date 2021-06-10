@@ -90,6 +90,91 @@ body > div:nth-child(odd) {
     }
 }
 
+.blog-post {
+    max-height: 226.5px;
+    .new-blog * {
+        height: 100%;
+    }
+    .new-blog {
+        height: 226.5px;
+        text-align: center;
+        cursor: pointer;
+
+        .icon {
+            color: $black;
+            font-size: 10vh;
+            vertical-align: middle
+        }
+    }
+
+    .is-ancestor * {
+        width: inherit;
+    }
+
+    .new-blog:hover {
+        filter: brightness(90%);
+    }
+
+    .blog {
+        background-color: $primary;
+        color: $black;
+        border-radius: 5px;
+        margin-bottom: 0.75rem;
+        padding: 1.25rem 1.5rem 1.25rem 1.5rem;
+
+        .subtitle {
+            color: $black;
+            padding-bottom: 25px;
+
+            .is-pulled-left {
+                width: 120px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .is-pulled-right {
+                .left {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    .tag {
+        background-color: $black;
+        color: $lightgrey !important;
+        text-decoration: none !important;
+    }
+
+    .tag:hover {
+        filter: brightness(80%);
+    }
+
+    .fade {
+        margin: 0 0 1em 0;
+        overflow: hidden;
+        // width: 100%;
+
+        position: relative;
+        height: 4.5em; /* exactly three lines */
+    }
+
+    .fade:after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 70%;
+        height: 1.2em;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(253, 173, 0, 1) 50%);
+    }
+}
+
+
+
+
 .seection, .is-gradient {
     background: linear-gradient(55deg, rgba(18,18,18,1) 5%, rgba(253,173,0,1) 100%);
 
@@ -130,32 +215,10 @@ body > div:nth-child(odd) {
     }
 }
 
-.form-hider {
-    opacity: 0;
-    -webkit-transition: all 0.4s;
-    transition: all 0.4s;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    position: absolute;
-
-    text-align: center;
-
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .mail-container {
     width: 100%;
     height: 100%;
     position: relative;
-}
-
-.form-hider:hover {
-    opacity: 1;
-    background-color:rgb(18, 18, 18, 0.7);
 }
 
 .edit {
@@ -227,6 +290,7 @@ body > div:nth-child(odd) {
 
 .form-container {
     margin-top: 3em;
+    margin-bottom: 3em;
 
     .panel-block {
         background-color: $grey;
@@ -234,7 +298,9 @@ body > div:nth-child(odd) {
         .label {
             color: $lightgrey;
         }
-
+        p {
+            color: $lightgrey;
+        }
         .columns {
             width: 100%;
         }

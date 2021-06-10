@@ -17,7 +17,9 @@ class ContentController extends Controller
         $bookPost = $post->whereOrder(1)->first();
         $aboutPost = $post->whereOrder(2)->first();
         $contactPost = $post->whereOrder(3)->first();
-        
+        $columns = $post->whereOrder(4)->get();
+        $blogPost = $post->whereOrder(5)->first();
+
         $postImage = File::where('type', '=', 'post')->first();
 
         // All book variables
@@ -37,7 +39,7 @@ class ContentController extends Controller
         $featuredHeader = File::where('book_id', '=', $bookId)->where('type', '=', 'header')->get();
         $featuredCover = File::where('book_id', '=', $bookId)->where('type', '=', 'cover')->get();
 
-        return view('home', compact('bookPost', 'aboutPost', 'contactPost', 'postImage', 'books', 'featuredBook', 'featuredHeader', 'featuredCover'));
+        return view('home', compact('bookPost', 'aboutPost', 'contactPost', 'columns', 'blogPost', 'postImage', 'books', 'featuredBook', 'featuredHeader', 'featuredCover'));
     }
 
     public function demo()
