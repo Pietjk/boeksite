@@ -8,18 +8,52 @@
 @import './node_modules/bulma/bulma.sass';
 
 html {
-    --lh: 1.5rem;
-    line-height: var(--lh);
-    scroll-behavior: smooth;
-    background-color: $black;
+    body {
+        --lh: 1.5rem;
+        line-height: var(--lh);
+        scroll-behavior: smooth;
+        background-color: $black;
 
-    a {
-        color: inherit;
-        text-decoration: none;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .site-navigation {
+            background-color: $primary !important;
+            width: 25px;
+            height: fit-content;
+            border-radius: 50px;
+
+            float: right;
+            position: fixed;
+            top: 50%;
+            bottom: 50%;
+            transform: translate(-50%, -50%);
+            right: 0;
+        }
+        .dot {
+            background-color: $white;
+            width: 15px;
+            height: 15px;
+            border-radius: 15px;
+            margin: 0 auto;
+        }
+        .dot:hover {
+            background-color: $grey;
+        }
+        .nav-info{
+            // background-color: green;
+            right: 40px;
+            height: 15px;
+            float: left;
+            position: relative;
+        }
     }
+
 }
 
-body > div:nth-child(even) {
+body > div:nth-child(odd) {
     background-color: $grey;
     color: $white;
 
@@ -41,7 +75,7 @@ body > div:nth-child(even) {
     }
 }
 
-body > div:nth-child(odd) {
+body > div:nth-child(even) {
     background-color: $black;
     color: $white;
 

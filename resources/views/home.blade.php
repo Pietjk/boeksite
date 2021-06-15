@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+@include('components._scroll')
+
 @include('components._nav')
 
 {{-- Primary book --}}
