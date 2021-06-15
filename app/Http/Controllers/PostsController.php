@@ -32,6 +32,7 @@ class PostsController extends Controller
             'type' => ['required', 'string']
         ]);
 
+        // Remove this because it's an integer allready
         unset($validated['type']);
 
         if ($request->type === "alle boeken")
