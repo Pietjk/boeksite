@@ -268,7 +268,7 @@
     </div>
 </div>
 
-{{-- blogs --}}
+{{-- Blogs --}}
 <div id="columns">
     @auth
         <a href="
@@ -376,6 +376,148 @@
                 @endif
             </div>
             <div class="hero-foot">
+            </div>
+        </section>
+    </div>
+</div>
+
+{{-- Reviews --}}
+<div id="reviews">
+    @auth
+        <a href="
+            @if ($blogPost === null)
+                {{ route('post.create', ['post' => 'blog text', 'order' => 4]) }}
+            @else
+                {{ route('post.edit', $blogPost) }}
+            @endif
+        ">
+            <div class="edit">
+                <span class="edit-icon">
+                    <p>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($blogPost === null) Creëer @else Pas aan @endif</span>
+                    </p>
+                </span>
+            </div>
+        </a>
+    @endauth
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-head has-text-centered mt-5">
+                <h1 class="title is-12">
+                    Reviews
+                    {{-- @if($blogPost === null)
+                        Oeps!
+                    @else
+                        {{ $blogPost->name }}
+                    @endif --}}
+                </h1>
+                <p>
+                    Hier staan een aantal reviews
+                    {{-- @if($blogPost === null)
+                        Er is nog geen column text
+                    @else
+                        {{ $blogPost->description }}
+                    @endif --}}
+                </p>
+            </div>
+            <div class="hero-body">
+                {{-- @if (! $columns->isEmpty())
+
+                @endif --}}
+                <div class="columns is-multiline is-centered">
+
+
+                    <div class="column reviews is-4">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent">
+                                <div class="tile is-child review sinp">
+                                    <p>Sinp</p>
+                                    <hr class="my-2">
+                                    <p class="subtitle">
+                                        <span class="is-pulled-left">
+                                            Wilhelmina:
+                                        </span>
+                                        <span class="is-pulled-right score">
+                                            8.3
+                                        </span>
+                                    </p>
+                                    <p class="fade">{{ $column->description }}</p>
+                                    <p></p>
+                                    <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column reviews is-4">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent">
+                                <div class="tile is-child review laura">
+                                    <p>Laura</p>
+                                    <hr class="my-2">
+                                    <p class="subtitle">
+                                        <span class="is-pulled-left">
+                                            Willem:
+                                        </span>
+                                        <span class="is-pulled-right">
+                                            8.5
+                                        </span>
+                                    </p>
+                                    <p class="fade">{{ $column->description }}</p>
+                                    <p></p>
+                                    <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column reviews is-4">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent">
+                                <div class="tile is-child review rr">
+                                    <p>Ricards Requiem</p>
+                                    <hr class="my-2">
+                                    <p class="subtitle">
+                                        <span class="is-pulled-left">
+                                            Johanna:
+                                        </span>
+                                        <span class="is-pulled-right">
+                                            10
+                                        </span>
+                                    </p>
+                                    <p class="fade">{{ $column->description }}</p>
+                                    <p></p>
+                                    <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column reviews is-12">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent">
+                                <div class="tile is-child review cantor">
+                                    <p>Cantor</p>
+                                    <hr class="my-2">
+                                    <p class="subtitle">
+                                        <span class="is-pulled-left">
+                                            Willem:
+                                        </span>
+                                        <span class="is-pulled-right">
+                                            9
+                                        </span>
+                                    </p>
+                                    <p class="fade">{{ $column->description }}</p>
+                                    <p></p>
+                                        <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         </section>
     </div>

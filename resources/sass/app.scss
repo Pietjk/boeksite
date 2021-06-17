@@ -127,7 +127,7 @@ body > div:nth-child(odd) {
             padding-bottom: 25px;
 
             .is-pulled-left {
-                width: 120px;
+                width: 110px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -173,6 +173,125 @@ body > div:nth-child(odd) {
 }
 
 
+.reviews {
+    // max-height: 226.5px;
+
+    .review {
+        background-color: $default;
+        color: $lightgrey;
+        border-radius: 5px;
+        margin-bottom: 0.75rem;
+        padding: 1.25rem 1.5rem 1.25rem 1.5rem;
+
+        .subtitle {
+            color: $white;
+            padding-bottom: 25px;
+
+            .is-pulled-left {
+                width: 110px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .is-pulled-right {
+                .left {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        hr {
+            height: 1px;
+            color: $lightgrey;
+        }
+    }
+
+    .tag {
+        background-color: $black;
+        color: $lightgrey !important;
+        text-decoration: none !important;
+    }
+
+    .tag:hover {
+        filter: brightness(80%);
+    }
+
+    .fade {
+        margin: 0 0 1em 0;
+        overflow: hidden;
+        // width: 100%;
+
+        position: relative;
+        height: 4.5em; /* exactly three lines */
+    }
+
+    .fade:after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 70%;
+        height: 1.2em;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(227, 52, 47, 1) 50%);
+    }
+
+
+
+    .cantor {
+        background-color: $cantor;
+        color: $lightgrey;
+        hr {
+            background-color: $lightgrey;
+        }
+        .subtitle {
+            color: $lightgrey;
+        }
+        .fade:after {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(55, 97, 155, 1) 50%);
+        }
+    }
+    .laura {
+        background-color: $laura;
+        color: $lightgrey;
+        hr {
+            background-color: $lightgrey;
+        }
+        .subtitle {
+            color: $lightgrey;
+        }
+        .fade:after {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(18, 18, 18, 1) 50%);
+        }
+    }
+    .sinp {
+        background-color: $sinp;
+        color: $black;
+        hr {
+            background-color: $black;
+        }
+        .subtitle {
+            color: $black;
+        }
+        .fade:after {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(249, 249, 249, 1) 50%);
+        }
+    }
+    .rr {
+        background-color: $primary;
+        color: $black;
+        hr {
+            background-color: $black;
+        }
+        .subtitle {
+            color: $black;
+        }
+        .fade:after {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(253, 173, 0, 1) 50%);
+        }
+    }
+}
 
 
 .seection, .is-gradient {
