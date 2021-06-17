@@ -201,7 +201,6 @@
     @auth
         <a href="
             @if ($aboutPost === null)
-            {{-- ipv 'over mij' word dit een 2 en dit gebeurt ook voor alle andere links --}}
                 {{ route('post.create', ['post' => 'over mij', 'order' => 2]) }}
             @else
                 {{ route('post.edit', $aboutPost) }}
