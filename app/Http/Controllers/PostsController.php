@@ -15,7 +15,8 @@ class PostsController extends Controller
     public function create(Request $request)
     {
         $currentPost = $request->post;
-        return view('posts.create', compact('currentPost'));
+        $postOrder = $request->order;
+        return view('posts.create', compact('currentPost', 'postOrder'));
     }
 
     /**
@@ -26,39 +27,12 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validateWithBag('form-feedback', [
+        Post::create($request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
             'description' => ['required', 'string', 'min:3'],
-            'type' => ['required', 'string']
-        ]);
-
-        // Remove this because it's an integer allready
-        unset($validated['type']);
-
-        if ($request->type === "alle boeken")
-        {
-            $order = 1;
-        }
-        elseif ($request->type === "over mij")
-        {
-            $order = 2;
-        }
-        elseif ($request->type === "contact")
-        {
-            $order = 3;
-        }
-        elseif ($request->type === "blog")
-        {
-            $order = 4;
-        }
-        elseif ($request->type === "blog text")
-        {
-            $order = 5;
-        }
-
-        Post::create($validated + ['order' => $order]);
-
-        if ($request->type === "over mij")
+            'order' => ['required', 'integer']
+        ]));
+        if ($request->order === "2")
         {
             $post = Post::whereOrder(2)->pluck('id')->first();
             return view('posts.choice', compact('post'));
@@ -105,7 +79,7 @@ class PostsController extends Controller
 
         $post->update($validated);
 
-        return redirect('/');
+        return redirect(route('home'));
     }
 
     /**

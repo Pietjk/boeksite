@@ -11,7 +11,7 @@
                     <a href="{{ route('home', '#columns') }}" class="button is-primary is-small"><i class="fas fa-arrow-left"></i></a>
                 </span>
                 <span>
-                    {{ $post->name }}
+                    {{ $column->name }}
                 </span>
             </div>
             <div class="panel-block px-5 py-5">
@@ -19,7 +19,7 @@
                     @php
                         echo(
                             nl2br(
-                                $post->description
+                                $column->description
                             )
                         );
                     @endphp

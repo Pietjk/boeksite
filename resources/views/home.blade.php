@@ -4,7 +4,7 @@
 @include('components._nav')
 
 {{-- Primary book --}}
-<div>
+<div id="primary-book">
     @auth
         <a href="
             @if ($books->isEmpty())
@@ -29,8 +29,8 @@
                 <div class="columns is-multiline is-centered">
                     <div class="level">
                         <div class="column image-column">
-                            @if(isset($featuredHeader[0]))
-                                <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover[0]->filepath) }}" alt="">
+                            @if(isset($featuredHeader))
+                                <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover->filepath) }}" alt="">
                             @else
                                 <div class="placeholder-image has-text-centered px-5 py-5">
                                     <p>De afbeelding(en) zijn nog niet toegevoegd</p>
@@ -83,11 +83,11 @@
     </div>
 </div>
 {{-- Book list --}}
-<div>
+<div id="book-list">
     @auth
         <a href="
             @if ($bookPost === null)
-                {{ route('post.create', ['post' => 'alle boeken']) }}
+                {{ route('post.create', ['post' => 'alle boeken', 'order' => 1]) }}
             @else
                 {{ route('post.edit', $bookPost) }}
             @endif
@@ -197,12 +197,12 @@
 </div>
 
 {{-- About me --}}
-<div>
+<div id="about-me">
     @auth
         <a href="
             @if ($aboutPost === null)
             {{-- ipv 'over mij' word dit een 2 en dit gebeurt ook voor alle andere links --}}
-                {{ route('post.create', ['post' => 'over mij']) }}
+                {{ route('post.create', ['post' => 'over mij', 'order' => 2]) }}
             @else
                 {{ route('post.edit', $aboutPost) }}
             @endif
@@ -274,7 +274,7 @@
     @auth
         <a href="
             @if ($blogPost === null)
-                {{ route('post.create', ['post' => 'blog text']) }}
+                {{ route('post.create', ['post' => 'blog text', 'order' => 4]) }}
             @else
                 {{ route('post.edit', $blogPost) }}
             @endif
@@ -321,10 +321,10 @@
                                         </span>
                                         @auth
                                         <span class="is-pulled-right">
-                                            <a href="{{ route('post.edit', $column) }}" class="left">
+                                            <a href="{{ route('column.edit', $column) }}" class="left">
                                                 <i class="far fa-edit"></i>
                                             </a>
-                                            {{-- <form action="{{ route('post.destroy', $column) }}"> --}}
+
                                             <span class="right">
                                                 <a href="#"
                                                     onclick="event.preventDefault();
@@ -333,7 +333,8 @@
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
                                             </span>
-                                            <form id="destroy-form" action="{{ route('post.destroy', $column) }}" method="POST">
+
+                                            <form id="destroy-form" action="{{ route('column.destroy', $column) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
@@ -359,7 +360,7 @@
                             @else
                                 is-one-third
                             @endif
-                        blog-post" onclick="window.location='{{ route('post.create', ['post' => 'blog']) }}';">
+                        blog-post" onclick="window.location='{{ route('column.create') }}';">
                             <div class="tile is-ancestor new-blog">
                                 <div class="tile is-parent">
                                     <div class="tile is-child blog columns is-vcentered">
@@ -382,11 +383,11 @@
 </div>
 
 {{-- Contact --}}
-<div>
+<div id="contact">
     @auth
     <a href="
         @if ($contactPost === null)
-            {{ route('post.create', ['post' => 'contact']) }}
+            {{ route('post.create', ['post' => 'contact', 'order' => 3]) }}
         @else
             {{ route('post.edit', $contactPost) }}
         @endif

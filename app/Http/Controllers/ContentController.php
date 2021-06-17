@@ -8,22 +8,26 @@ use Illuminate\Support\Facades\DB;
 use App\Models\File;
 use App\Models\Post;
 use App\Models\Book;
+use App\Models\Column;
 
 class ContentController extends Controller
 {
-    public function home(Post $post, Book $book, File $file)
+    public function home()
     {
         // All post variables
-        $bookPost = $post->whereOrder(1)->first();
-        $aboutPost = $post->whereOrder(2)->first();
-        $contactPost = $post->whereOrder(3)->first();
-        $columns = $post->whereOrder(4)->get();
-        $blogPost = $post->whereOrder(5)->first();
+        $posts = Post::all();
+        $bookPost = $posts->where('order', '=', 1)->first();
+        $aboutPost = $posts->where('order', '=', 2)->first();
+        $contactPost = $posts->where('order', '=', 3)->first();
+        $blogPost = $posts->where('order', '=', 4)->first();
 
-        $postImage = File::where('type', '=', 'post')->first();
+        $columns = Column::all();
+
+        $files = File::all();
+        $postImage = $files->where('type', '=', 'post')->first();
 
         // All book variables
-        $books = $book->all();
+        $books = Book::all();
         $books->load('files');
         $featuredBook = $books->where('featured',true)->first();
 
@@ -36,8 +40,8 @@ class ContentController extends Controller
             $bookId = 1;
         }
 
-        $featuredHeader = File::where('book_id', '=', $bookId)->where('type', '=', 'header')->get();
-        $featuredCover = File::where('book_id', '=', $bookId)->where('type', '=', 'cover')->get();
+        $featuredHeader = $files->where('book_id', '=', $bookId)->where('type', '=', 'header')->first();
+        $featuredCover = $files->where('book_id', '=', $bookId)->where('type', '=', 'cover')->first();
 
         return view('home', compact('bookPost', 'aboutPost', 'contactPost', 'columns', 'blogPost', 'postImage', 'books', 'featuredBook', 'featuredHeader', 'featuredCover'));
     }

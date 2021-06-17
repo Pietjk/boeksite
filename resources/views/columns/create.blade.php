@@ -8,16 +8,15 @@
         <div class="panel is-primary">
             <div class="panel-heading">
                 <span class="pr-3">
-                    <a href="{{ route('home') }}" class="button is-primary is-small"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ route('home', '#columns') }}" class="button is-primary is-small"><i class="fas fa-arrow-left"></i></a>
                 </span>
                 <span>
-                    Wat komt er in "{{ $currentPost }}" te staan?
+                    Wat komt er in je nieuwe column te staan?
                 </span>
 
             </div>
-            <form action="{{ route('post.store') }}" method="post">
+            <form action="{{ route('column.store') }}" method="post">
                 @csrf
-                <input type="hidden" name="order" value="{{ $postOrder }}">
 
                 <div class="panel-block">
                     <div class="columns is-multiline">
@@ -28,7 +27,7 @@
                         </div>
                         <div class="column is-12">
                             <label for="text" class="label">Text</label>
-                                <textarea type="text" class="textarea" name="description" placeholder="Text">{{ old('description') }}</textarea>
+                                <textarea type="text" class="textarea" name="description" placeholder="Text" rows="20">{{ old('description') }}</textarea>
                         </div>
                         <div class="column is-12">
                             <button type="submit" class="button is-outlined is-primary is-fullwidth">
