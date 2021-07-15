@@ -385,16 +385,16 @@
 <div id="reviews">
     @auth
         <a href="
-            @if ($blogPost === null)
-                {{ route('post.create', ['post' => 'blog text', 'order' => 4]) }}
+            @if ($reviewPost === null)
+                {{ route('post.create', ['post' => 'blog text', 'order' => 5]) }}
             @else
-                {{ route('post.edit', $blogPost) }}
+                {{ route('post.edit', $reviewPost) }}
             @endif
         ">
             <div class="edit">
                 <span class="edit-icon">
                     <p>
-                        <i class="far fa-edit"></i><span class="edit-text">@if ($blogPost === null) Creëer @else Pas aan @endif</span>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($reviewPost === null) Creëer @else Pas aan @endif</span>
                     </p>
                 </span>
             </div>
@@ -405,20 +405,18 @@
         <section class="hero">
             <div class="hero-head has-text-centered mt-5">
                 <h1 class="title is-12">
-                    Reviews
-                    {{-- @if($blogPost === null)
+                    @if($reviewPost === null)
                         Oeps!
                     @else
-                        {{ $blogPost->name }}
-                    @endif --}}
+                        {{ $reviewPost->name }}
+                    @endif
                 </h1>
                 <p>
-                    Hier staan een aantal reviews
-                    {{-- @if($blogPost === null)
+                    @if($reviewPost === null)
                         Er is nog geen column text
                     @else
-                        {{ $blogPost->description }}
-                    @endif --}}
+                        {{ $reviewPost->description }}
+                    @endif
                 </p>
             </div>
             <div class="hero-body">
