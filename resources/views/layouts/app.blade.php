@@ -21,14 +21,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
+
 </head>
 <body>
         @yield('content')
 
         <script>
             var slider = document.querySelector('.glide');
-            
+
             if (slider) {
                 var glide = new Glide('.glide', {
                 type: 'carousel',
@@ -63,11 +63,11 @@
                     }
                 }
                 })
-    
+
                 glide.mount()
             }
-            
-            
+
+
         </script>
 </body>
 </html>

@@ -70,17 +70,6 @@ class BooksController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Book $book)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Book  $book
@@ -142,7 +131,7 @@ class BooksController extends Controller
         if ($book->featured)
         {
             $newFeatured = Book::where('id', '!=', $book->id)->first();
-            
+
             if ($newFeatured != null) {
                 $newFeatured->update(['featured' => true]);
             }
@@ -154,7 +143,7 @@ class BooksController extends Controller
         foreach ($files->pluck('filename') as $filename) {
             Storage::disk('public')->delete($filename.'.png');
         }
-        
+
         // Delete the files and book from the database
         $files->delete();
         $book->delete();
@@ -168,7 +157,7 @@ class BooksController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function feature(Request $request, Book $book)
+    public function feature(Book $book)
     {
         Book::whereFeatured(true)->update(['featured' => false]);
         $book->update(['featured' => true]);

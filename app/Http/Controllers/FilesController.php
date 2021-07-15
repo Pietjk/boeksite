@@ -47,13 +47,13 @@ class FilesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function bookstore(Request $request, Book $book, Post $post)
+    public function bookstore(Request $request, Book $book)
     {
         if ($request->hasFile('bookCover'))
         {
             if ($request->file('bookCover')->isValid()) {
                 $validated = $request->validateWithBag('form-feedback', [
-                    'bookCover' => 'image', 'max:2048'
+                    'bookCover' => ['image', 'max:2048']
                 ]);
 
                 $name = strtolower(str_replace(' ', '', $book->id . 'cover'));
@@ -62,7 +62,7 @@ class FilesController extends Controller
 
                 File::whereFilename($name)->delete();
 
-                $file = File::create([
+                File::create([
                     'filename' => $name,
                     'filepath' => $url,
                     'book_id' => $book->id,
@@ -75,7 +75,7 @@ class FilesController extends Controller
         {
             if ($request->file('bookHeader')->isValid()) {
                 $validated = $request->validateWithBag('form-feedback', [
-                    'bookHeader' => 'image', 'max:2048'
+                    'bookHeader' => ['image', 'max:2048']
                 ]);
 
                 $name = strtolower(str_replace(' ', '', $book->id . 'header'));
@@ -84,7 +84,7 @@ class FilesController extends Controller
 
                 File::whereFilename($name)->delete();
 
-                $file = File::create([
+                File::create([
                     'filename' => $name,
                     'filepath' => $url,
                     'book_id' => $book->id,
@@ -102,13 +102,13 @@ class FilesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function poststore(Request $request, Post $post)
+    public function poststore(Request $request)
     {
         if ($request->hasFile('post'))
         {
             if ($request->file('post')->isValid()) {
                 $validated = $request->validateWithBag('form-feedback', [
-                    'post' => 'image', 'max:2048'
+                    'post' => ['image', 'max:2048']
                 ]);
                 $name = 'post';
                 $request->post->storeAs('public', $name.".png");
@@ -116,7 +116,7 @@ class FilesController extends Controller
 
                 File::whereFilename($name)->delete();
 
-                $file = File::create([
+                File::create([
                     'filename' => $name,
                     'filepath' => $url,
                     'type' => 'post'
@@ -139,7 +139,7 @@ class FilesController extends Controller
         {
             if ($request->file('bookPdf')->isValid()) {
                 $validated = $request->validateWithBag('form-feedback', [
-                    'bookPdf' => 'required', 'mimes:pdf', 'file', 'max:2048'
+                    'bookPdf' => ['required', 'mimes:pdf', 'file', 'max:2048']
                 ]);
                 $name = strtolower(str_replace(' ', '', 'book' . $book->id));
                 $request->bookPdf->storeAs('public', $name.'.'.$request->bookPdf->extension());
@@ -147,7 +147,7 @@ class FilesController extends Controller
 
                 File::whereFilename($name)->delete();
 
-                $file = File::create([
+                File::create([
                     'filename' => $name,
                     'filepath' => $url,
                     'type' => 'pdf'

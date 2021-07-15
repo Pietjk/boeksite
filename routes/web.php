@@ -19,19 +19,28 @@ Route::get('/', [App\Http\Controllers\ContentController::class, 'home'])->name('
 // Mail route
 Route::post('/send', [App\Http\Controllers\MailController::class, 'send'])->name('send');
 
-// Demo page
-// Route::get('/demo/{book}', [App\Http\Controllers\FilesController::class, 'pdfShow'])->name('demo');
+// Column page
+Route::get('/blog/{column}', [App\Http\Controllers\ColumnsController::class, 'show'])->name('column.show');
+
+// Review page
+Route::get('/reviewer/{review}', [App\Http\Controllers\ReviewController::class, 'show'])->name('review.show');
 
 Route::middleware('auth')->group(function () {
     // Post routing
-    Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'destroy', 'index']);
+    Route::resource('post', App\Http\Controllers\PostsController::class)->except(['show', 'index']);
+
+    // Column routing
+    Route::resource('column', App\Http\Controllers\ColumnsController::class)->except(['index', 'show']);
+
+    // Review routing
+    Route::resource('review', App\Http\Controllers\ReviewController::class)->except(['show']);
 
     // File post routing
     Route::get('/post/{post}/file/create', [App\Http\Controllers\FilesController::class, 'postcreate'])->name('postfiles.create');
     Route::post('/post/{post}/file/store', [App\Http\Controllers\FilesController::class, 'poststore'])->name('postfiles.store');
 
     // Book routing
-    Route::resource('book', App\Http\Controllers\BooksController::class);
+    Route::resource('book', App\Http\Controllers\BooksController::class)->except(['show']);
     Route::post('/book/{book}/feature', [App\Http\Controllers\BooksController::class, 'feature'])->name('book.feature');
     route::get('/book/{book}/choice', [App\Http\Controllers\BooksController::class, 'choice'] )->name('book.choice');
 

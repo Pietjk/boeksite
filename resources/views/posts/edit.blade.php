@@ -17,17 +17,17 @@
             <form action="{{ route('post.update', $post) }}" method="post">
                 @method('PATCH')
                 @csrf
-                
+
                 <div class="panel-block">
                     <div class="columns is-multiline">
-                        
+
                         <div class="column is-12">
                             <label for="text" class="label">Titel</label>
                                 <input type="text" class="input" name="name" placeholder="Titel" value="{{ (old('name') == '') ? $post->name : old('name') }}">
                         </div>
                         <div class="column is-12">
                             <label for="text" class="label">Text</label>
-                                <textarea type="text" class="textarea" name="description" placeholder="Text">{{ (old('description') == '') ? $post->description : old('description') }}</textarea>
+                                <textarea type="text" class="textarea" name="description" placeholder="Text" rows="20">{{ (old('description') == '') ? $post->description : old('description') }}</textarea>
                         </div>
                         <div class="column is-12">
                             <button type="submit" class="button is-outlined is-primary is-fullwidth">
@@ -38,10 +38,10 @@
                 </div>
             </form>
         </div>
-        @if ($post->order = 2)
+        @if ($post->order === 2)
             <div class="box button-box">
                 <a href="{{ route('postfiles.create', $post) }}" class="button  is-primary is-outlined is-fullwidth">Voeg een foto toe</a>
-            </div>    
+            </div>
         @endif
     </div>
 @endsection

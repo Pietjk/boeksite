@@ -4,7 +4,7 @@
 @include('components._nav')
 
 {{-- Primary book --}}
-<div>
+<div id="primary-book">
     @auth
         <a href="
             @if ($books->isEmpty())
@@ -29,8 +29,8 @@
                 <div class="columns is-multiline is-centered">
                     <div class="level">
                         <div class="column image-column">
-                            @if(isset($featuredHeader[0]))
-                                <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover[0]->filepath) }}" alt="">
+                            @if(isset($featuredHeader))
+                                <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover->filepath) }}" alt="">
                             @else
                                 <div class="placeholder-image has-text-centered px-5 py-5">
                                     <p>De afbeelding(en) zijn nog niet toegevoegd</p>
@@ -83,11 +83,11 @@
     </div>
 </div>
 {{-- Book list --}}
-<div>
+<div id="book-list">
     @auth
         <a href="
             @if ($bookPost === null)
-                {{ route('post.create', ['post' => 'alle boeken']) }}
+                {{ route('post.create', ['post' => 'alle boeken', 'order' => 1]) }}
             @else
                 {{ route('post.edit', $bookPost) }}
             @endif
@@ -102,7 +102,7 @@
         </a>
     @endauth
 
-    <div class="container " id="section1">
+    <div class="container">
         <section class="hero is-fullheight">
             <div class="hero-head">
                 <div class="section has-text-centered">
@@ -197,11 +197,11 @@
 </div>
 
 {{-- About me --}}
-<div>
+<div id="about-me">
     @auth
         <a href="
             @if ($aboutPost === null)
-                {{ route('post.create', ['post' => 'over mij']) }}
+                {{ route('post.create', ['post' => 'over mij', 'order' => 2]) }}
             @else
                 {{ route('post.edit', $aboutPost) }}
             @endif
@@ -216,7 +216,7 @@
         </a>
     @endauth
 
-    <div class="container" id="section1">
+    <div class="container">
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="columns">
@@ -268,12 +268,211 @@
     </div>
 </div>
 
+{{-- Blogs --}}
+<div id="columns">
+    @auth
+        <a href="
+            @if ($blogPost === null)
+                {{ route('post.create', ['post' => 'blog text', 'order' => 4]) }}
+            @else
+                {{ route('post.edit', $blogPost) }}
+            @endif
+        ">
+            <div class="edit">
+                <span class="edit-icon">
+                    <p>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($blogPost === null) Creëer @else Pas aan @endif</span>
+                    </p>
+                </span>
+            </div>
+        </a>
+    @endauth
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-head has-text-centered mt-5">
+                <h1 class="title is-12">
+                    @if($blogPost === null)
+                        Oeps!
+                    @else
+                        {{ $blogPost->name }}
+                    @endif
+                </h1>
+                <p>
+                    @if($blogPost === null)
+                        Er is nog geen column text
+                    @else
+                        {{ $blogPost->description }}
+                    @endif
+                </p>
+            </div>
+            <div class="hero-body">
+                @if (! $columns->isEmpty())
+                <div class="columns is-multiline is-centered">
+                    @foreach ($columns as $column)
+                    <div class="column @if(count($columns) === 1) is-fullwidth @elseif(count($columns) === 2) is-half @else is-one-third  @endif blog-post">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent">
+                                <div class="tile is-child blog">
+                                    <p class="subtitle">
+                                        <span class="is-pulled-left">
+                                            {{ $column->name }}
+                                        </span>
+                                        @auth
+                                        <span class="is-pulled-right">
+                                            <a href="{{ route('column.edit', $column) }}" class="left">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+
+                                            <span class="right">
+                                                <a href="#"
+                                                    onclick="event.preventDefault();
+                                                    document.getElementById('destroy-form' + {{ $column->id }}).submit();"
+                                                    class="left">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </a>
+                                            </span>
+
+                                            <form id="{{'destroy-form' . $column->id}}" action="{{ route('column.destroy', $column) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                            </form>
+                                        </span>
+                                        @endauth
+
+                                    </p>
+                                    <p class="fade">{{ $column->description }}</p>
+                                    <p></p>
+                                    <a class="tag" href="{{ route('column.show', $column) }}">Lees verder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
+                    @auth
+                        <div class="column
+                            @if (count($columns) === 1 || $columns->isEmpty())
+                                is-fullwidth
+                            @elseif (count($columns) === 2)
+                                is-half
+                            @else
+                                is-one-third
+                            @endif
+                        blog-post" onclick="window.location='{{ route('column.create') }}';">
+                            <div class="tile is-ancestor new-blog">
+                                <div class="tile is-parent">
+                                    <div class="tile is-child blog columns is-vcentered">
+                                        <div class="column has-text-centered">
+                                            <p class="icon"><i class="far fa-plus-square"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endauth
+                @if (! $columns->isEmpty())
+                </div>
+                @endif
+            </div>
+            <div class="hero-foot">
+            </div>
+        </section>
+    </div>
+</div>
+
+{{-- Reviews --}}
+<div id="reviews">
+    @auth
+        <a href="
+            @if ($blogPost === null)
+                {{ route('post.create', ['post' => 'blog text', 'order' => 4]) }}
+            @else
+                {{ route('post.edit', $blogPost) }}
+            @endif
+        ">
+            <div class="edit">
+                <span class="edit-icon">
+                    <p>
+                        <i class="far fa-edit"></i><span class="edit-text">@if ($blogPost === null) Creëer @else Pas aan @endif</span>
+                    </p>
+                </span>
+            </div>
+        </a>
+    @endauth
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-head has-text-centered mt-5">
+                <h1 class="title is-12">
+                    Reviews
+                    {{-- @if($blogPost === null)
+                        Oeps!
+                    @else
+                        {{ $blogPost->name }}
+                    @endif --}}
+                </h1>
+                <p>
+                    Hier staan een aantal reviews
+                    {{-- @if($blogPost === null)
+                        Er is nog geen column text
+                    @else
+                        {{ $blogPost->description }}
+                    @endif --}}
+                </p>
+            </div>
+            <div class="hero-body">
+                <div class="columns is-multiline is-centered">
+                    @foreach ($chosenReviews as $review)
+                        <div class="column reviews
+                            @if (count($chosenReviews) === 1) is-full
+                                @elseif (count($chosenReviews) === 2) is-half
+                                @elseif (count($chosenReviews) === 3) is-one-third
+                                @elseif (count($chosenReviews) === 4) is-4
+                            @endif
+                            @if ($loop->iteration === 4 && $loop->last) is-12 @endif
+                        ">
+                            <div class="tile is-ancestor">
+                                <div class="tile is-parent">
+                                    <div class="tile is-child review @if ($review->books->name === 'Ricards requiem') rr @elseif($review->books->name === 'Cantor') cantor @elseif($review->books->name === 'Laura') laura @elseif($review->books->name === 'Sinp') sinp @endif">
+                                        <p>{{$review->books->name}}</p>
+                                        <hr class="my-2">
+                                        <p class="subtitle">
+                                            <span class="is-pulled-left">
+                                                {{ $review->name }}:
+                                            </span>
+                                            <span class="is-pulled-right tag is-medium">
+                                                {{ ($review->score === null) ? 'N/A' : $review->score }}
+                                            </span>
+                                        </p>
+                                        <p class="fade">{{ $review->description }}</p>
+                                        <p></p>
+                                        <a class="tag" href="{{ route('review.show', $review) }}">Lees verder</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    @auth
+                        <div class="button-wrap column is-12">
+                            <a href="{{ route('review.index') }}" class="button wide is-outlined is-primary">
+                                Reviews beheren
+                            </a>
+                        </div>
+                    @endauth
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
 {{-- Contact --}}
-<div>
+<div id="contact">
     @auth
     <a href="
         @if ($contactPost === null)
-            {{ route('post.create', ['post' => 'contact']) }}
+            {{ route('post.create', ['post' => 'contact', 'order' => 3]) }}
         @else
             {{ route('post.edit', $contactPost) }}
         @endif
