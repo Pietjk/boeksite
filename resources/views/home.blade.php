@@ -273,7 +273,7 @@
     @auth
         <a href="
             @if ($blogPost === null)
-                {{ route('post.create', ['post' => 'blog text', 'order' => 4]) }}
+                {{ route('post.create', ['post' => 'column text', 'order' => 4]) }}
             @else
                 {{ route('post.edit', $blogPost) }}
             @endif
@@ -386,7 +386,7 @@
     @auth
         <a href="
             @if ($reviewPost === null)
-                {{ route('post.create', ['post' => 'blog text', 'order' => 5]) }}
+                {{ route('post.create', ['post' => 'review text', 'order' => 5]) }}
             @else
                 {{ route('post.edit', $reviewPost) }}
             @endif
