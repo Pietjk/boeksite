@@ -343,7 +343,7 @@
                                     </p>
                                     <p class="fade">{{ $column->description }}</p>
                                     <p></p>
-                                    <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
+                                    <a class="tag" href="{{ route('column.show', $column) }}">Lees verder</a>
                                 </div>
                             </div>
                         </div>
