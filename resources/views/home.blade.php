@@ -413,9 +413,8 @@
                     @endif --}}
                 </h1>
                 <p>
-                    Hier staan een aantal reviews
-                    {{-- @if($blogPost === null)
-                        Er is nog geen column text
+                    @if($reviewPost === null)
+                        Er is nog geen review text
                     @else
                         {{ $blogPost->description }}
                     @endif --}}
