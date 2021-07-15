@@ -208,12 +208,12 @@ body > div:nth-child(odd) {
     }
 
     .tag {
-        background-color: $black;
+        background-color: $lightblack;
         color: $lightgrey !important;
         text-decoration: none !important;
     }
 
-    .tag:hover {
+    a:hover {
         filter: brightness(80%);
     }
 
@@ -423,6 +423,84 @@ body > div:nth-child(odd) {
         .columns {
             width: 100%;
         }
+
+        .range-box{
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .range {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 24px;
+            background: $lightgrey;
+            border-radius: 3px;
+            outline: none;
+            opacity: 0.8;
+            cursor: pointer;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .range:hover {
+            opacity: 1;
+          }
+
+          .range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: $primary;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          .range::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: $primary;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          .range-wrap {
+              height: 50px;
+              position: relative;
+              .label {
+                  color: $black;
+              }
+          }
+
+          .range-value {
+              position: absolute;
+              top: 75%;
+          }
+          .range-value {
+            width: fit-content;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            background: $black;
+            color: $lightgrey;
+            font-size: 12px;
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+            border-radius: 6px;
+          }
+          .range-value:before{
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-bottom: 5px solid $black;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -5px;
+            margin-top: -1px;
+          }
     }
 
     .button-box {

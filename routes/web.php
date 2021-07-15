@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     // Column routing
     Route::resource('column', App\Http\Controllers\ColumnsController::class)->except(['index']);
 
+    // Review routing
+    Route::resource('review', App\Http\Controllers\ReviewController::class);
+
     // File post routing
     Route::get('/post/{post}/file/create', [App\Http\Controllers\FilesController::class, 'postcreate'])->name('postfiles.create');
     Route::post('/post/{post}/file/store', [App\Http\Controllers\FilesController::class, 'poststore'])->name('postfiles.store');

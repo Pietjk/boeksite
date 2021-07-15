@@ -9,6 +9,7 @@ use App\Models\File;
 use App\Models\Post;
 use App\Models\Book;
 use App\Models\Column;
+use App\Models\Review;
 
 class ContentController extends Controller
 {
@@ -27,8 +28,7 @@ class ContentController extends Controller
         $postImage = $files->where('type', '=', 'post')->first();
 
         // All book variables
-        $books = Book::all();
-        $books->load('files');
+        $books = Book::with('files', 'reviews')->get();
         $featuredBook = $books->where('featured',true)->first();
 
         if($featuredBook != null )
@@ -40,10 +40,44 @@ class ContentController extends Controller
             $bookId = 1;
         }
 
+        // All review variables
+        $reviews = Review::with('books')->get();
+        $chosenReviews = [];
+
+        foreach ($books as $book) {
+            ${"reviewsFromBook$book->id"}[] = $reviews->where('book_id', '=', $book->id);
+
+            if (!empty(${"reviewsFromBook$book->id"}[0]->toArray()))
+            {
+                $key = array_rand(${"reviewsFromBook$book->id"}[0]->toArray());
+                ${"selectedReview$book->id"} = ${"reviewsFromBook$book->id"}[0][$key];
+            }
+            else
+            {
+                continue;
+            }
+
+            $chosenReviews[$book->id] = ${"selectedReview$book->id"};
+        }
+
+        shuffle($chosenReviews);
+
         $featuredHeader = $files->where('book_id', '=', $bookId)->where('type', '=', 'header')->first();
         $featuredCover = $files->where('book_id', '=', $bookId)->where('type', '=', 'cover')->first();
 
-        return view('home', compact('bookPost', 'aboutPost', 'contactPost', 'columns', 'blogPost', 'postImage', 'books', 'featuredBook', 'featuredHeader', 'featuredCover'));
+        return view('home', compact(
+            'bookPost',
+            'aboutPost',
+            'contactPost',
+            'columns',
+            'blogPost',
+            'postImage',
+            'books',
+            'featuredBook',
+            'featuredHeader',
+            'featuredCover',
+            'chosenReviews'
+        ));
     }
 
     public function demo()

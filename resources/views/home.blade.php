@@ -327,13 +327,13 @@
                                             <span class="right">
                                                 <a href="#"
                                                     onclick="event.preventDefault();
-                                                    document.getElementById('destroy-form').submit();"
+                                                    document.getElementById('destroy-form' + {{ $column->id }}).submit();"
                                                     class="left">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
                                             </span>
 
-                                            <form id="destroy-form" action="{{ route('column.destroy', $column) }}" method="POST">
+                                            <form id="{{'destroy-form' . $column->id}}" action="{{ route('column.destroy', $column) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
@@ -422,101 +422,45 @@
                 </p>
             </div>
             <div class="hero-body">
-                {{-- @if (! $columns->isEmpty())
-
-                @endif --}}
                 <div class="columns is-multiline is-centered">
-
-
-                    <div class="column reviews is-4">
-                        <div class="tile is-ancestor">
-                            <div class="tile is-parent">
-                                <div class="tile is-child review sinp">
-                                    <p>Sinp</p>
-                                    <hr class="my-2">
-                                    <p class="subtitle">
-                                        <span class="is-pulled-left">
-                                            Wilhelmina:
-                                        </span>
-                                        <span class="is-pulled-right score">
-                                            8.3
-                                        </span>
-                                    </p>
-                                    <p class="fade">{{ $column->description }}</p>
-                                    <p></p>
-                                    <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
+                    @foreach ($chosenReviews as $review)
+                        <div class="column reviews
+                            @if (count($chosenReviews) === 1) is-full
+                                @elseif (count($chosenReviews) === 2) is-half
+                                @elseif (count($chosenReviews) === 3) is-one-third
+                                @elseif (count($chosenReviews) === 4) is-4
+                            @endif
+                            @if ($loop->iteration === 4 && $loop->last) is-12 @endif
+                        ">
+                            <div class="tile is-ancestor">
+                                <div class="tile is-parent">
+                                    <div class="tile is-child review @if ($review->books->name === 'Ricards requiem') rr @elseif($review->books->name === 'Cantor') cantor @elseif($review->books->name === 'Laura') laura @elseif($review->books->name === 'Sinp') sinp @endif">
+                                        <p>{{$review->books->name}}</p>
+                                        <hr class="my-2">
+                                        <p class="subtitle">
+                                            <span class="is-pulled-left">
+                                                {{ $review->name }}:
+                                            </span>
+                                            <span class="is-pulled-right tag is-medium">
+                                                {{ ($review->score === null) ? 'N/A' : $review->score }}
+                                            </span>
+                                        </p>
+                                        <p class="fade">{{ $review->description }}</p>
+                                        <p></p>
+                                        <a class="tag" href="{{ route('review.show', $review) }}">Lees verder</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <div class="column reviews is-4">
-                        <div class="tile is-ancestor">
-                            <div class="tile is-parent">
-                                <div class="tile is-child review laura">
-                                    <p>Laura</p>
-                                    <hr class="my-2">
-                                    <p class="subtitle">
-                                        <span class="is-pulled-left">
-                                            Willem:
-                                        </span>
-                                        <span class="is-pulled-right">
-                                            8.5
-                                        </span>
-                                    </p>
-                                    <p class="fade">{{ $column->description }}</p>
-                                    <p></p>
-                                    <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
-                                </div>
-                            </div>
+                    @auth
+                        <div class="button-wrap column is-12">
+                            <a href="{{ route('review.index') }}" class="button wide is-outlined is-primary">
+                                Reviews beheren
+                            </a>
                         </div>
-                    </div>
-
-                    <div class="column reviews is-4">
-                        <div class="tile is-ancestor">
-                            <div class="tile is-parent">
-                                <div class="tile is-child review rr">
-                                    <p>Ricards Requiem</p>
-                                    <hr class="my-2">
-                                    <p class="subtitle">
-                                        <span class="is-pulled-left">
-                                            Johanna:
-                                        </span>
-                                        <span class="is-pulled-right">
-                                            10
-                                        </span>
-                                    </p>
-                                    <p class="fade">{{ $column->description }}</p>
-                                    <p></p>
-                                    <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="column reviews is-12">
-                        <div class="tile is-ancestor">
-                            <div class="tile is-parent">
-                                <div class="tile is-child review cantor">
-                                    <p>Cantor</p>
-                                    <hr class="my-2">
-                                    <p class="subtitle">
-                                        <span class="is-pulled-left">
-                                            Willem:
-                                        </span>
-                                        <span class="is-pulled-right">
-                                            9
-                                        </span>
-                                    </p>
-                                    <p class="fade">{{ $column->description }}</p>
-                                    <p></p>
-                                        <a class="tag" href="{{ route('blog.show', $column) }}">Lees verder</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    @endauth
                 </div>
             </div>
         </section>
