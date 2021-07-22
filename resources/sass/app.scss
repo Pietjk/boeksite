@@ -8,12 +8,12 @@
 @import './node_modules/bulma/bulma.sass';
 
 html {
-    body {
-        --lh: 1.5rem;
-        line-height: var(--lh);
-        scroll-behavior: smooth;
-        background-color: $black;
+    --lh: 1.5rem;
+    line-height: var(--lh);
+    scroll-behavior: smooth;
+    background-color: $black;
 
+    body {
         a {
             color: inherit;
             text-decoration: none;
@@ -24,6 +24,8 @@ html {
             width: 25px;
             height: fit-content;
             border-radius: 50px;
+            opacity: 0.5;
+            transition: 0.5s;
 
             float: right;
             position: fixed;
@@ -31,6 +33,10 @@ html {
             bottom: 50%;
             transform: translate(-50%, -50%);
             right: 0;
+            z-index: 99;
+        }
+        .site-navigation:hover {
+            opacity: 1;
         }
         .dot {
             background-color: $white;
@@ -38,22 +44,41 @@ html {
             height: 15px;
             border-radius: 15px;
             margin: 0 auto;
+            cursor: pointer;
         }
         .dot:hover {
             background-color: $grey;
+            .nav-info {
+                visibility: visible;
+            }
         }
+        .bridge {
+            float: right;
+            position: absolute;
+            width: 25px;
+            height: 31px;
+            bottom: 6px;
+            right: 5px;
+        }
+
         .nav-info{
-            // background-color: green;
-            right: 40px;
-            height: 15px;
-            float: left;
+            right: 25px;
+            bottom: 6px;
+            width: max-content;
+            float: right;
             position: relative;
+            padding: 0px 5px 3px 5px;
+            color: $lightgrey;
+            background-color: $grey;
+            border: solid $primary 2px;
+            border-radius: 5px;
+            visibility: hidden;
         }
     }
 
 }
 
-body > div:nth-child(odd) {
+body > main > div:nth-child(odd) {
     background-color: $grey;
     color: $white;
 
@@ -75,7 +100,7 @@ body > div:nth-child(odd) {
     }
 }
 
-body > div:nth-child(even) {
+body > main > div:nth-child(even) {
     background-color: $black;
     color: $white;
 
@@ -208,7 +233,6 @@ body > div:nth-child(even) {
 
 
 .reviews {
-    // max-height: 226.5px;
 
     .review {
         background-color: $default;

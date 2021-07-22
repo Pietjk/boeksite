@@ -67,6 +67,7 @@ class ContentController extends Controller
         $featuredCover = $files->where('book_id', '=', $bookId)->where('type', '=', 'cover')->first();
 
         return view('home', compact(
+            'posts',
             'bookPost',
             'aboutPost',
             'contactPost',
