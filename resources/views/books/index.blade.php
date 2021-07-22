@@ -5,12 +5,12 @@
         <div class="panel is-primary">
             <div class="panel-heading">
                 <span class="pr-3">
-                    <a href="{{ route('home') }}" class="button is-primary is-small"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ route('home', '#primary-book') }}" class="button is-primary is-small"><i class="fas fa-arrow-left"></i></a>
                 </span>
                 <span>
                     Alle boeken
                 </span>
-            </div>   
+            </div>
             <div class="panel-block">
                 @if (!$books->isEmpty())
                     <div class="table-container">
@@ -32,11 +32,11 @@
                                         <td class="table-checkbox">
                                             <form action="{{ route('book.feature', $book) }}" method="post">
                                                 @csrf
-                                                <input type="checkbox" name="featured" 
-                                                    @if($book->featured) 
-                                                        checked disabled 
-                                                    @endif 
-                                                    onChange="this.form.submit()" 
+                                                <input type="checkbox" name="featured"
+                                                    @if($book->featured)
+                                                        checked disabled
+                                                    @endif
+                                                    onChange="this.form.submit()"
                                                 >
                                             </form>
                                         </td>

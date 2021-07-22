@@ -27,7 +27,7 @@
                         </div>
                         <div class="column is-12">
                             <label for="text" class="label">Text</label>
-                                <textarea type="text" class="textarea" name="description" placeholder="Text" rows="30">{{ (old('description') == '') ? $post->description : old('description') }}</textarea>
+                                <textarea type="text" class="textarea" name="description" placeholder="Text" rows="20">{{ (old('description') == '') ? $post->description : old('description') }}</textarea>
                         </div>
                         <div class="column is-12">
                             <button type="submit" class="button is-outlined is-primary is-fullwidth">

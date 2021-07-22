@@ -1,4 +1,4 @@
-<section class="hero is-fullheight has-bg-img" @if(isset($featuredHeader[0])) style="background-image:url('{{ asset($featuredHeader[0]->filepath) }}')" @endif>
+<section class="hero is-fullheight has-bg-img" @if(isset($featuredHeader)) style="background-image:url('{{ asset($featuredHeader->filepath) }}')" @endif>
     <div class="hero-head mb-5">
         @include('components._error', ['bag' => 'form-feedback'])
         @include('components._notification')

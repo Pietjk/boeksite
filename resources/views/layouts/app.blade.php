@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bekijk boeken en columns geschreven door Ruben Korfmaker. Auteur van Ricards requiem, Cantor, Laura en Sinp.">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Ruben Korfmaker') }}</title>
 
     <!-- Scripts -->
     <script src="/js/glide/dist/glide.min.js"></script>
@@ -21,14 +22,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
+
 </head>
 <body>
         @yield('content')
 
         <script>
             var slider = document.querySelector('.glide');
-            
+
             if (slider) {
                 var glide = new Glide('.glide', {
                 type: 'carousel',
@@ -63,11 +64,11 @@
                     }
                 }
                 })
-    
+
                 glide.mount()
             }
-            
-            
+
+
         </script>
 </body>
 </html>
