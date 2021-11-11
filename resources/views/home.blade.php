@@ -500,6 +500,7 @@
 
                                 <form action="{{ route('send') }}" method="post" enctype="multipart/form-data">
                                     @csrf
+                                    @honeypot
                                     <label for="text" class="label is-full-width">Naam</label>
                                         <input name="name" type="text" class="input" placeholder="Uw naam">
                                     <label for="text" class="label mt-2">E-mail adres</label>

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactFormSubmissionController;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\ContentController::class, 'home'])->name('home');
 
 // Mail route
-Route::post('/send', [App\Http\Controllers\MailController::class, 'send'])->name('send');
+Route::post('/send', [App\Http\Controllers\MailController::class, 'send'])->name('send')->middleware(ProtectAgainstSpam::class);
 
 // Column page
 Route::get('/blog/{column}', [App\Http\Controllers\ColumnsController::class, 'show'])->name('column.show');
