@@ -23,7 +23,7 @@ class ContentController extends Controller
         $blogPost = $posts->where('order', '=', 4)->first();
         $reviewPost = $posts->where('order', '=', 5)->first();
 
-        $columns = Column::all();
+        $columns = Column::all()->sortByDesc('created_at');
 
         $files = File::all();
         $postImage = $files->where('type', '=', 'post')->first();
