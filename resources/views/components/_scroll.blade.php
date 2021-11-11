@@ -2,12 +2,12 @@
     $top = 18;
     $pages = [
         ['name' => 'Thuis', 'link' => '#home'],
-        ['name' => $featuredBook->name, 'link' => '#primary-book'],
-        ['name' => $bookPost->name, 'link' => '#book-list'],
-        ['name' => $aboutPost->name, 'link' => '#about-me'],
-        ['name' => $blogPost->name, 'link' => '#columns'],
-        ['name' => $reviewPost->name, 'link' => '#reviews'],
-        ['name' => $contactPost->name, 'link' => '#contact'],
+        ['name' => $featuredBook->name ?? 'Aanbevolen book', 'link' => '#primary-book'],
+        ['name' => $bookPost->name ?? 'Alle boeken', 'link' => '#book-list'],
+        ['name' => $aboutPost->name ?? 'Over mij', 'link' => '#about-me'],
+        ['name' => $blogPost->name ?? 'Columns', 'link' => '#columns'],
+        ['name' => $reviewPost->name ?? 'Review', 'link' => '#reviews'],
+        ['name' => $contactPost->name ?? 'Contact', 'link' => '#contact'],
     ]
 @endphp
 
