@@ -8,23 +8,7 @@
 
     {{-- Primary book --}}
     <div id="primary-book">
-        @auth
-            <a href="
-                @if ($books->isEmpty())
-                    {{ route('book.create') }}
-                @else
-                    {{ route('book.index') }}
-                @endif
-            ">
-                <div class="edit">
-                    <span class="edit-icon">
-                        <p>
-                            <i class="far fa-edit"></i><span class="edit-text">@if ($featuredBook === null) Creëer @else Pas aan @endif</span>
-                        </p>
-                    </span>
-                </div>
-            </a>
-        @endauth
+        @auth @include('components._section_edit', $data = ['content' => [1 => $featuredBook], 'route' => [1 => route('book.create'), 2 => route('book.index')]]) @endauth
 
         <div class="container">
             <section class="hero is-fullheight">
@@ -87,23 +71,7 @@
     </div>
     {{-- Book list --}}
     <div id="book-list">
-        @auth
-            <a href="
-                @if ($bookPost === null)
-                    {{ route('post.create', ['post' => 'alle boeken', 'order' => 1]) }}
-                @else
-                    {{ route('post.edit', $bookPost) }}
-                @endif
-            ">
-                <div class="edit">
-                    <span class="edit-icon">
-                        <p>
-                            <i class="far fa-edit"></i><span class="edit-text">@if ($bookPost === null) Creëer @else Pas aan @endif</span>
-                        </p>
-                    </span>
-                </div>
-            </a>
-        @endauth
+        @auth @include('components._section_edit', $data = ['content' => [1 => $bookPost], 'route' => [1 => route('post.create', ['post' => 'alle boeken', 'order' => 1])]]) @endauth
 
         <div class="container">
             <section class="hero is-fullheight">
@@ -201,23 +169,7 @@
 
     {{-- About me --}}
     <div id="about-me">
-        @auth
-            <a href="
-                @if ($aboutPost === null)
-                    {{ route('post.create', ['post' => 'over mij', 'order' => 2]) }}
-                @else
-                    {{ route('post.edit', $aboutPost) }}
-                @endif
-            ">
-                <div class="edit">
-                    <span class="edit-icon">
-                        <p>
-                            <i class="far fa-edit"></i><span class="edit-text">@if ($aboutPost === null) Creëer @else Pas aan @endif</span>
-                        </p>
-                    </span>
-                </div>
-            </a>
-        @endauth
+        @auth @include('components._section_edit', $data = ['content' => [1 => $aboutPost], 'route' => [1 => route('post.create', ['post' => 'over mij', 'order' => 2])]]) @endauth
 
         <div class="container">
             <section class="hero is-fullheight">
@@ -273,23 +225,7 @@
 
     {{-- Blogs --}}
     <div id="columns">
-        @auth
-            <a href="
-                @if ($blogPost === null)
-                    {{ route('post.create', ['post' => 'column text', 'order' => 4]) }}
-                @else
-                    {{ route('post.edit', $blogPost) }}
-                @endif
-            ">
-                <div class="edit">
-                    <span class="edit-icon">
-                        <p>
-                            <i class="far fa-edit"></i><span class="edit-text">@if ($blogPost === null) Creëer @else Pas aan @endif</span>
-                        </p>
-                    </span>
-                </div>
-            </a>
-        @endauth
+        @auth @include('components._section_edit', $data = ['content' => [1 => $blogPost], 'route' => [1 => route('post.create', ['post' => 'column', 'order' => 4])]]) @endauth
 
         <div class="container">
             <section class="hero">
@@ -386,23 +322,7 @@
 
     {{-- Reviews --}}
     <div id="reviews">
-        @auth
-            <a href="
-                @if ($reviewPost === null)
-                    {{ route('post.create', ['post' => 'review text', 'order' => 5]) }}
-                @else
-                    {{ route('post.edit', $reviewPost) }}
-                @endif
-            ">
-                <div class="edit">
-                    <span class="edit-icon">
-                        <p>
-                            <i class="far fa-edit"></i><span class="edit-text">@if ($reviewPost === null) Creëer @else Pas aan @endif</span>
-                        </p>
-                    </span>
-                </div>
-            </a>
-        @endauth
+        @auth @include('components._section_edit', $data = ['content' => [1 => $reviewPost], 'route' => [1 => route('post.create', ['post' => 'review text', 'order' => 5])]]) @endauth
 
         <div class="container">
             <section class="hero">
@@ -470,23 +390,7 @@
 
     {{-- Contact --}}
     <div id="contact">
-        @auth
-        <a href="
-            @if ($contactPost === null)
-                {{ route('post.create', ['post' => 'contact', 'order' => 3]) }}
-            @else
-                {{ route('post.edit', $contactPost) }}
-            @endif
-        ">
-            <div class="edit">
-                <span class="edit-icon">
-                    <p>
-                        <i class="far fa-edit"></i><span class="edit-text">@if ($contactPost === null) Creëer @else Pas aan @endif</span>
-                    </p>
-                </span>
-            </div>
-        </a>
-        @endauth
+        @auth @include('components._section_edit', $data = ['content' => [1 => $contactPost],'route' => [1 => route('post.create', ['post' => 'contact', 'order' => 3])]]) @endauth
 
         <div class="container" id="section1">
             <section class="hero is-fullheight">
