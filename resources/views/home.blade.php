@@ -222,16 +222,39 @@
             </section>
         </div>
     </div>
+
+    {{-- News --}}
     <div id="news">
+        @auth @include('components._section_edit', $data = ['content' => [1 => $newsPost], 'route' => [1 => route('post.create', ['post' => 'nieuws', 'order' => 6])]]) @endauth
+
         <div class="container">
             <section class="hero">
                 <div class="hero-head has-text-centered mt-5">
-                    <h1 class="title is-12">
-                        Wassup broeders
-                    </h1>
-                    <p>
-                        Dit is de plek waar ik alle nieuwe dingen uitleg aan iedereen
-                    </p>
+                    <div class="section has-text-centered">
+                        <h1 class="title">
+                            @if($newsPost === null)
+                                Oeps!
+                            @else
+                                {{ $newsPost->name }}
+                            @endif
+                        </h1>
+                        <div class="text">
+                            @php
+                                if($newsPost === null)
+                                {
+                                    echo('Het lijkt erop dat er hier op dit moment nog geen content is');
+                                }
+                                else
+                                {
+                                    echo(
+                                        nl2br(
+                                            $newsPost->description
+                                        )
+                                    );
+                                }
+                            @endphp
+                        </div>
+                    </div>
                 </div>
                 <div class="hero-body">
                     <div class="columns is-multiline is-centered background-is-primary news">
@@ -243,7 +266,7 @@
                                 </div>
                                 <div class="news-body">
                                     <div class="is-clearfix ">
-                                        <img class="is-pulled-left image mr-4" src="{{ $postImage->filepath }}" alt="">
+                                        <img class="is-pulled-left image mr-4" src="" alt="">
 
                                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, molestiae expedita qui laborum, quam alias tempora molestias eum odio modi enim pariatur sint atque reprehenderit maiores minus necessitatibus officia assumenda laudantium quibusdam provident. Sequi recusandae iste asperiores obcaecati distinctio, odit doloremque totam perspiciatis?</p>
                                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, molestiae expedita qui laborum, quam alias tempora molestias eum odio modi enim pariatur sint atque reprehenderit maiores minus necessitatibus officia assumenda laudantium quibusdam provident. Sequi recusandae iste asperiores obcaecati distinctio, odit doloremque totam perspiciatis?</p>
@@ -256,6 +279,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        @auth
+                            <div class="button-wrap column is-12">
+                                <a href="{{ route('news.index') }}" class="button wide is-outlined is-primary">
+                                    Nieuws beheren
+                                </a>
+                            </div>
+                        @endauth
                     </div>
                 </div>
             </section>

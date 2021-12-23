@@ -22,6 +22,7 @@ class ContentController extends Controller
         $contactPost = $posts->where('order', '=', 3)->first();
         $blogPost = $posts->where('order', '=', 4)->first();
         $reviewPost = $posts->where('order', '=', 5)->first();
+        $newsPost = $posts->where('order', '=', 6)->first();
 
         $columns = Column::all()->sortByDesc('created_at');
 
@@ -73,6 +74,7 @@ class ContentController extends Controller
             'contactPost',
             'blogPost',
             'reviewPost',
+            'newsPost',
             'columns',
             'postImage',
             'books',

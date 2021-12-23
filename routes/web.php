@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
     // Column routing
     Route::resource('column', App\Http\Controllers\ColumnsController::class)->except(['index', 'show']);
 
+    // News routing
+    Route::resource('news', App\Http\Controllers\NewsController::class)->except(['show']);
+
     // Review routing
     Route::resource('review', App\Http\Controllers\ReviewController::class)->except(['show']);
 

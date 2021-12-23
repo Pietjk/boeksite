@@ -347,7 +347,7 @@ body > main > div:nth-child(even) {
     }
 
     .tag {
-        background-color: $lightblack;
+        background-color: $black;
         color: $lightgrey !important;
         text-decoration: none !important;
     }
@@ -401,7 +401,7 @@ body > main > div:nth-child(even) {
             color: $lightgrey;
         }
         .fade:after {
-            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(18, 18, 18, 1) 50%);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(38, 38, 38, 1) 50%);
         }
     }
     .sinp {
