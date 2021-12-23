@@ -5,6 +5,7 @@
         ['name' => $featuredBook->name ?? 'Aanbevolen book', 'link' => '#primary-book'],
         ['name' => $bookPost->name ?? 'Alle boeken', 'link' => '#book-list'],
         ['name' => $aboutPost->name ?? 'Over mij', 'link' => '#about-me'],
+        ['name' => $newsPost->name ?? 'Nieuws', 'link' => '#news'],
         ['name' => $blogPost->name ?? 'Columns', 'link' => '#columns'],
         ['name' => $reviewPost->name ?? 'Review', 'link' => '#reviews'],
         ['name' => $contactPost->name ?? 'Contact', 'link' => '#contact'],

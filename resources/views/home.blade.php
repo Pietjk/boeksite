@@ -222,6 +222,45 @@
             </section>
         </div>
     </div>
+    <div id="news">
+        <div class="container">
+            <section class="hero">
+                <div class="hero-head has-text-centered mt-5">
+                    <h1 class="title is-12">
+                        Wassup broeders
+                    </h1>
+                    <p>
+                        Dit is de plek waar ik alle nieuwe dingen uitleg aan iedereen
+                    </p>
+                </div>
+                <div class="hero-body">
+                    <div class="columns is-multiline is-centered background-is-primary news">
+                        <div class="column is-half has-text-black">
+                            <div class="news-item">
+                                <div class="news-header py-3">
+                                    <h3 class="subtitle">Lorem ipsum dolor sit amet consectetur.</h3>
+                                    <hr>
+                                </div>
+                                <div class="news-body">
+                                    <div class="is-clearfix ">
+                                        <img class="is-pulled-left image mr-4" src="{{ $postImage->filepath }}" alt="">
+
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, molestiae expedita qui laborum, quam alias tempora molestias eum odio modi enim pariatur sint atque reprehenderit maiores minus necessitatibus officia assumenda laudantium quibusdam provident. Sequi recusandae iste asperiores obcaecati distinctio, odit doloremque totam perspiciatis?</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, molestiae expedita qui laborum, quam alias tempora molestias eum odio modi enim pariatur sint atque reprehenderit maiores minus necessitatibus officia assumenda laudantium quibusdam provident. Sequi recusandae iste asperiores obcaecati distinctio, odit doloremque totam perspiciatis?</p>
+
+                                    </div>
+                                </div>
+                                <div class="news-footer">
+                                    <hr class="mb-3">
+                                    Lorem, ipsum dolor.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 
     {{-- Blogs --}}
     <div id="columns">
