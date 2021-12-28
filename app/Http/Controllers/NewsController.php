@@ -36,7 +36,19 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validateWithBag('form-feedback', [
+            'name' => ['required', 'min:3', 'string', 'max:255'],
+            'description' => ['required', 'string', 'min:3'],
+            'link' => ['required', 'string', 'active_url'],
+            'image' => ['required', 'image','max:200'],
+        ]);
+
+        unset($validated['image']);
+        $path = $request->file('image')->store('news', 'public');
+        $validated['image_path'] = 'storage/'.$path;
+
+        News::Create($validated);
+        return redirect(route('news.index'));
     }
 
     /**

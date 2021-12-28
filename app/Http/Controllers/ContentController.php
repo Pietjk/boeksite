@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\File;
 use App\Models\Post;
 use App\Models\Book;
+use App\Models\News;
 use App\Models\Column;
 use App\Models\Review;
 
@@ -67,6 +68,8 @@ class ContentController extends Controller
         $featuredHeader = $files->where('book_id', '=', $bookId)->where('type', '=', 'header')->first();
         $featuredCover = $files->where('book_id', '=', $bookId)->where('type', '=', 'cover')->first();
 
+        $news = News::all();
+
         return view('home', compact(
             'posts',
             'bookPost',
@@ -81,7 +84,8 @@ class ContentController extends Controller
             'featuredBook',
             'featuredHeader',
             'featuredCover',
-            'chosenReviews'
+            'chosenReviews',
+            'news'
         ));
     }
 

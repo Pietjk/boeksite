@@ -4,7 +4,7 @@
     <div class="container form-container">
 
         @include('components._error', ['bag' => 'form-feedback'])
-
+@dd($news)
         <div class="panel is-primary">
             <div class="panel-heading">
                 <span class="pr-3">
@@ -15,7 +15,7 @@
                 </span>
 
             </div>
-            <form action="{{ route('news.store') }}" method="post">
+            <form action="{{ route('news.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="panel-block">
                     <div class="columns is-multiline">
@@ -31,10 +31,25 @@
                             <label for="text" class="label">Een link</label>
                                 <input type="text" class="input" name="link" placeholder="Bijv. https://www.rubenkorfmaker.nl" value="{{ old('link') }}">
                         </div>
-
                         <div class="column is-12">
-                            <label for="text" class="label">label</label>
-                                <input type="file" class="file">
+                            <div class="box file-box is-fullwidth">
+                                <div class="file file-upload has-name is-primary is-medium is-fullwidth" id="image-upload">
+                                    <label class="file-label">
+                                        <input class="file-input" type="file" name="image">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload"></i>
+                                            </span>
+                                            <span class="file-label">
+                                                Kies een bestand...
+                                            </span>
+                                        </span>
+                                        <span class="file-name">
+                                            Geen bestand geselecteerd
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="column is-12">
@@ -47,4 +62,15 @@
             </form>
         </div>
     </div>
+
+    <script>
+        const imageInput = document.querySelector('#image-upload input[type=file]');
+
+        imageInput.onchange = () => {
+            if (imageInput.files.length > 0) {
+                const fileName = document.querySelector('#image-upload .file-name');
+                fileName.textContent = imageInput.files[0].name;
+            }
+        }
+    </script>
 @endsection

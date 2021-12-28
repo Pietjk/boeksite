@@ -19,9 +19,7 @@
                                 <tr>
                                     <th>Naam</th>
                                     <th>Beschrijving</th>
-                                    <th>score</th>
                                     <th>link</th>
-                                    <th>boek</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -31,9 +29,7 @@
                                     <tr>
                                         <td>{{ $newsItem->name }}</td>
                                         <td>{{ $newsItem->description }}</td>
-                                        <td>@if($newsItem->score !== null) {{ $newsItem->score }} @else - @endif</td>
                                         <td>@if($newsItem->link !== null) <a class="tag is-primary" href="{{ $newsItem->link }}" target="_blank">Bekijk</a> @else - @endif</td>
-                                        <td>{{ $newsItem->books->name }}</td>
                                         <td>
                                             <a href="{{ route('news.edit', $newsItem) }}">
                                                 <span class="edit-icon"><i class="far fa-edit"></i></span>
@@ -55,7 +51,7 @@
                     </div>
                 @else
                     <div class="info-box has-text-centered">
-                        <h1 class="is-size-4"><i class="fas fa-info-circle"></i><span>Er is op dit moment nog geen nieuwsbericht</span></h1>
+                        <h1 class="is-size-4"><i class="fas fa-info-circle"></i><span> Er is op dit moment nog geen nieuwsbericht</span></h1>
                     </div>
                 @endif
             </div>

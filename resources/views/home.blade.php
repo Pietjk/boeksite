@@ -257,37 +257,40 @@
                     </div>
                 </div>
                 <div class="hero-body">
+                    @if(count($news) > 0)
                     <div class="columns is-multiline is-centered background-is-primary news">
-                        <div class="column is-half has-text-black">
-                            <div class="news-item">
-                                <div class="news-header py-3">
-                                    <h3 class="subtitle">Lorem ipsum dolor sit amet consectetur.</h3>
-                                    <hr>
-                                </div>
-                                <div class="news-body">
-                                    <div class="is-clearfix ">
-                                        <img class="is-pulled-left image mr-4" src="" alt="">
-
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, molestiae expedita qui laborum, quam alias tempora molestias eum odio modi enim pariatur sint atque reprehenderit maiores minus necessitatibus officia assumenda laudantium quibusdam provident. Sequi recusandae iste asperiores obcaecati distinctio, odit doloremque totam perspiciatis?</p>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, molestiae expedita qui laborum, quam alias tempora molestias eum odio modi enim pariatur sint atque reprehenderit maiores minus necessitatibus officia assumenda laudantium quibusdam provident. Sequi recusandae iste asperiores obcaecati distinctio, odit doloremque totam perspiciatis?</p>
-
+                        @foreach ($news as $newsItem)
+                            <div class="column is-half has-text-black">
+                                <div class="news-item">
+                                    <div class="news-header py-3">
+                                        <h3 class="subtitle">{{ $newsItem->name }}</h3>
+                                        <hr>
+                                    </div>
+                                    <div class="news-body">
+                                        <div class="is-clearfix ">
+                                            @if ($newsItem->image_path !== null)
+                                                <img class="is-pulled-left image mr-4" src="{{ asset($newsItem->image_path) }}" alt="">
+                                            @endif
+                                                {!! nl2br(e($newsItem->description)) !!}
+                                        </div>
+                                    </div>
+                                    <div class="news-footer">
+                                        <hr class="mb-3">
+                                        Lorem, ipsum dolor.
                                     </div>
                                 </div>
-                                <div class="news-footer">
-                                    <hr class="mb-3">
-                                    Lorem, ipsum dolor.
-                                </div>
                             </div>
-                        </div>
+                        @endforeach
 
-                        @auth
-                            <div class="button-wrap column is-12">
-                                <a href="{{ route('news.index') }}" class="button wide is-outlined is-primary">
-                                    Nieuws beheren
-                                </a>
-                            </div>
-                        @endauth
                     </div>
+                    @endif
+                    @auth
+                        <div class="button-wrap column is-12">
+                            <a href="{{ route('news.index') }}" class="button wide is-outlined is-primary">
+                                Nieuws beheren
+                            </a>
+                        </div>
+                    @endauth
                 </div>
             </section>
         </div>
