@@ -4,7 +4,6 @@
     <div class="container form-container">
 
         @include('components._error', ['bag' => 'form-feedback'])
-@dd($news)
         <div class="panel is-primary">
             <div class="panel-heading">
                 <span class="pr-3">

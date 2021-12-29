@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -39,13 +40,15 @@ class NewsController extends Controller
         $validated = $request->validateWithBag('form-feedback', [
             'name' => ['required', 'min:3', 'string', 'max:255'],
             'description' => ['required', 'string', 'min:3'],
-            'link' => ['required', 'string', 'active_url'],
-            'image' => ['required', 'image','max:200'],
+            'link' => ['nullable', 'string', 'active_url'],
+            'image' => ['image','max:200'],
         ]);
 
-        unset($validated['image']);
-        $path = $request->file('image')->store('news', 'public');
-        $validated['image_path'] = 'storage/'.$path;
+        if (isset($validated['image'])) {
+            unset($validated['image']);
+            $path = $request->file('image')->store('news', 'public');
+            $validated['image_path'] = 'storage/'.$path;
+        }
 
         News::Create($validated);
         return redirect(route('news.index'));
@@ -93,6 +96,11 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        $image = str_replace('storage/', '', $news->image_path);
+        if (isset($image)) {
+            Storage::disk('public')->delete($image);
+        }
+        $news->delete();
+        return back();
     }
 }
