@@ -114,7 +114,7 @@
                                     @foreach($books as $book)
                                         <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
                                             <img  class="image is-4x3 carousel-image"
-                                                @if($book->files->contains('cover'))
+                                                @if($book->files->count() > 0)
                                                     src="{{$book->files->filter(function ($value, $key)
                                                     {
                                                         return strpos($value['filename'],'cover') !== false;
