@@ -259,9 +259,7 @@
                 <div class="hero-body">
                     @if(count($news) > 0)
                         <div class="columns is-multiline is-centered background-is-primary news">
-                            @foreach ($news as $newsItem)
-                                @include('components._news', $newsItem)
-                            @endforeach
+                                @each('components._news', $news, 'newsItem')
                         </div>
                     @endif
                     @if ($newsCount > 2)
