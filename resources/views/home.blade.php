@@ -16,7 +16,7 @@
                     <div class="columns is-multiline is-centered">
                         <div class="level">
                             <div class="column image-column">
-                                @if(isset($featuredHeader))
+                                @if(isset($featuredCover))
                                     <img class="image section-image is-2by3 is-paddingless" src="{{ asset($featuredCover->filepath) }}" alt="">
                                 @else
                                     <div class="placeholder-image has-text-centered px-5 py-5">
@@ -114,7 +114,7 @@
                                     @foreach($books as $book)
                                         <li class="slider__frame glide__slide {{ $loop->iteration }} image-container">
                                             <img  class="image is-4x3 carousel-image"
-                                                @if($book->files->count() > 0)
+                                                @if($book->files->contains('cover'))
                                                     src="{{$book->files->filter(function ($value, $key)
                                                     {
                                                         return strpos($value['filename'],'cover') !== false;
