@@ -258,31 +258,18 @@
                 </div>
                 <div class="hero-body">
                     @if(count($news) > 0)
-                    <div class="columns is-multiline is-centered background-is-primary news">
-                        @foreach ($news as $newsItem)
-                            <div class="column is-half has-text-black">
-                                <div class="news-item">
-                                    <div class="news-header py-3">
-                                        <h3 class="subtitle">{{ $newsItem->name }}</h3>
-                                        <hr>
-                                    </div>
-                                    <div class="news-body">
-                                        <div class="is-clearfix ">
-                                            @if ($newsItem->image_path !== null)
-                                                <img class="is-pulled-left image mr-4" src="{{ asset($newsItem->image_path) }}" alt="">
-                                            @endif
-                                                {!! nl2br(e($newsItem->description)) !!}
-                                        </div>
-                                    </div>
-                                    <div class="news-footer">
-                                        <hr class="mb-3">
-                                        Lorem, ipsum dolor.
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
+                        <div class="columns is-multiline is-centered background-is-primary news">
+                            @foreach ($news as $newsItem)
+                                @include('components._news', $newsItem)
+                            @endforeach
+                        </div>
+                    @endif
+                    @if ($newsCount > 2)
+                        <div class="button-wrap column is-12">
+                            <a href="{{ route('news.showAll') }}" class="button wide is-outlined is-primary">
+                                Bekijk al het nieuws
+                            </a>
+                        </div>
                     @endif
                     @auth
                         <div class="button-wrap column is-12">

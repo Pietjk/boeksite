@@ -21,6 +21,9 @@ Route::get('/', [App\Http\Controllers\ContentController::class, 'home'])->name('
 // Mail route
 Route::post('/send', [App\Http\Controllers\MailController::class, 'send'])->name('send')->middleware(ProtectAgainstSpam::class);
 
+// News page
+Route::get('/news/all', [App\Http\Controllers\NewsController::class, 'showAll'])->name('news.showAll');
+
 // Column page
 Route::get('/blog/{column}', [App\Http\Controllers\ColumnsController::class, 'show'])->name('column.show');
 

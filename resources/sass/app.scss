@@ -182,6 +182,7 @@ body > main > div:nth-child(even) {
 
         .image {
             box-shadow: none;
+            border-radius: 5px;
         }
 
         @media (min-width: 1024px) {

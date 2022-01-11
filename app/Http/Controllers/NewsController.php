@@ -60,9 +60,10 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function showAll()
     {
-        //
+        $news = News::all()->sortByDesc('created_at');
+        return view('news.show', compact('news'));
     }
 
     /**
@@ -73,7 +74,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return view('news.edit', compact('news'));
     }
 
     /**
@@ -85,7 +86,31 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        $validated = $request->validateWithBag('form-feedback', [
+            'name' => ['required', 'min:3', 'string', 'max:255'],
+            'description' => ['required', 'string', 'min:3'],
+            'link' => ['nullable', 'string', 'active_url'],
+            'image' => ['image','max:200'],
+            'delete_image' => ['nullable']
+        ]);
+
+
+        $image = str_replace('storage/', '', $news->image_path);
+
+        if (isset($validated['delete_image'])) {
+            Storage::disk('public')->delete($image);
+            $validated['image_path'] = null;
+        }
+
+        if (isset($validated['image'])) {
+            Storage::disk('public')->delete($image);
+            unset($validated['image']);
+            $path = $request->file('image')->store('news', 'public');
+            $validated['image_path'] = 'storage/'.$path;
+        }
+
+        $news->update($validated);
+        return redirect(route('news.index'));
     }
 
     /**

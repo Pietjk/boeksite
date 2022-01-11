@@ -68,7 +68,9 @@ class ContentController extends Controller
         $featuredHeader = $files->where('book_id', '=', $bookId)->where('type', '=', 'header')->first();
         $featuredCover = $files->where('book_id', '=', $bookId)->where('type', '=', 'cover')->first();
 
-        $news = News::all();
+        $allNews = News::all();
+        $news = $allNews->sortByDesc('created_at')->take(2);
+        $newsCount = count($allNews);
 
         return view('home', compact(
             'posts',
@@ -85,7 +87,8 @@ class ContentController extends Controller
             'featuredHeader',
             'featuredCover',
             'chosenReviews',
-            'news'
+            'news',
+            'newsCount'
         ));
     }
 
