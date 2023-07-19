@@ -679,13 +679,6 @@ body > main > div:nth-child(even) {
     color: $lightgrey;
 }
 
-@media (max-width: 768px)
-{
-    .button-wrap .button {
-        width: 100%;
-    }
-}
-
 @media only screen and (max-width: 1215px){
     .parent{
         padding: 70px !important;
